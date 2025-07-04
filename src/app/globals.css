@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+
+  @keyframes rotate-forever {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Define your animation utility using a CSS custom property */
+  --animate-spin-forever: rotate-forever 9s linear infinite;
+
+  /* Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-darkBlue: #001e38;
+  --color-white: #ffffff;
+  --color-offWhite: #f8f8f8;
+  --color-white2: #f4f4f2;
+  --color-cloudGray: #eeeee9;
+  --color-brick: #a55e3f;
+  --color-laundryWhite: #f6f6f0;
+  --color-beige: #F5D8C7;
+  --color-mossgreen: #8d8132;
+  --color-sealbrown: #672900;
+  --color-linen: #fbefe7;
+
+  /* Breakpoint */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+  --breakpoint-3xl: 1920px;
+
+  /* padding */
+  --container-padding-DEFAULT: 25px;
+  --container-padding-sm: "25px";
+  --container-padding-md: "35px";
+  --container-padding-lg: "45px";
+  --container-padding-xl: "56px";
+  --container-padding-2xl: "72px";
+  --container-padding-3xl: "96px";
+}
+
+body {
+  background-color: #f4f4f2;
+  font-family: var(--font-quickSand), var(--open-sans), var(--roboto),
+    "sans-serif";
+}
+
+.global-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.global-scrollbar::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+.global-scrollbar::-webkit-scrollbar-thumb {
+  background: #516559;
+}
+
+/* globals.css or a similar global stylesheet */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.zig-zag-box {
+  --s: 20px;
+  width: 320px;
+  height: 100px;
+  mask:
+    conic-gradient(#000 0 0) 50% / calc(100% - var(--s)) calc(100% - var(--s)) no-repeat,
+    repeating-conic-gradient(
+      from 45deg,
+      #0000 0,
+      #000 1deg 89deg,
+      #0000 25% 50%
+    ) calc(var(--s) / 2) 0 / var(--s) var(--s);
+  -webkit-mask:
+    conic-gradient(#000 0 0) 50% / calc(100% - var(--s)) calc(100% - var(--s)) no-repeat,
+    repeating-conic-gradient(
+      from 45deg,
+      #0000 0,
+      #000 1deg 89deg,
+      #0000 25% 50%
+    ) calc(var(--s) / 2) 0 / var(--s) var(--s);
+}
+
+
