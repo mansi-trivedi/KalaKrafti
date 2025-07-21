@@ -10,7 +10,7 @@ const Grid = () => {
                         src="https://krafti.qodeinteractive.com/wp-content/uploads/2019/06/portfolio-main-img-1.jpg" // Path relative to public/
                         alt="portfolio-main-img-1"
                         fill
-                        objectFit="cover"
+                        className="object-cover"
                     />
                     <div className='bg-white2 transition-all duration-500 translate-y-[450px] opacity-0 group-hover:opacity-100 group-hover:translate-y-96 m-4 p-4 text-center'>
                         <h1 className="text-brick font-semibold uppercase tracking-widest">Organic Raw</h1>
@@ -23,7 +23,7 @@ const Grid = () => {
                         src="https://krafti.qodeinteractive.com/wp-content/uploads/2019/06/portfolio-main-img-2.jpg" // Path relative to public/
                         alt="portfolio-main-img-2"
                         fill
-                        objectFit="cover"
+                        className="object-cover"
                     />
                     <div className='bg-white2 transition-all duration-500 translate-y-[194px] opacity-0 group-hover:opacity-100 group-hover:translate-y-32  m-4 p-4 text-center'>
                         <h1 className="text-brick font-semibold uppercase tracking-widest">New Wave</h1>
@@ -36,7 +36,7 @@ const Grid = () => {
                         src="https://krafti.qodeinteractive.com/wp-content/uploads/2019/06/portfolio-main-img-3.jpg" // Path relative to public/
                         alt="Book mockup 'Creatively Fulfilled'"
                         fill
-                        objectFit="cover"
+                        className="object-cover"
                     />
                     <div className='bg-white2 transition-all duration-500 translate-y-[194px] opacity-0 group-hover:opacity-100 group-hover:translate-y-32  m-4 p-4 text-center'>
                         <h1 className="text-brick font-semibold uppercase tracking-widest">Package</h1>
@@ -49,7 +49,7 @@ const Grid = () => {
                         src="https://krafti.qodeinteractive.com/wp-content/uploads/2019/06/portfolio-main-img-4.jpg" // Path relative to public/
                         alt="Cardboard box mockup 'Audrey'"
                         fill
-                        objectFit="cover"
+                        className="object-cover"
                     />
                     <div className='bg-white2 transition-all duration-500 translate-y-[194px] opacity-0 group-hover:opacity-100 group-hover:translate-y-32  m-4 p-4 text-center'>
                         <h1 className="text-brick font-semibold uppercase tracking-widest">Presentation</h1>
@@ -62,7 +62,7 @@ const Grid = () => {
                         src="https://krafti.qodeinteractive.com/wp-content/uploads/2019/06/portfolio-main-img-5.jpg" // Path relative to public/
                         alt="Large text 'YOU ARE HERE'"
                         fill
-                        objectFit="cover"
+                        className="object-cover"
                     />
                     <div className='bg-white2 transition-all duration-500 translate-y-[194px] opacity-0 group-hover:opacity-100 group-hover:translate-y-32  m-4 p-4 text-center'>
                         <h1 className="text-brick font-semibold uppercase tracking-widest">Branding</h1>

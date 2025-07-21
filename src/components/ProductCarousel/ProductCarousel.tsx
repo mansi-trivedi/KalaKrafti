@@ -2,57 +2,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-
-const products = [
-    {
-        name: 'Organic Cookies',
-        category: 'Organic Food',
-        price: '$5.99',
-        image: 'https://krafti.qodeinteractive.com/wp-content/uploads/2019/07/shop-1-img-7.jpg',
-    },
-    {
-        name: 'Camomile Soap',
-        category: 'Homemade cosmetics',
-        price: '$5.99',
-        image: 'https://krafti.qodeinteractive.com/wp-content/uploads/2019/07/shop-1-img-8.jpg',
-    },
-    {
-        name: 'Wool Scarf',
-        category: 'Clothing accessories',
-        price: '$37.99',
-        image: 'https://krafti.qodeinteractive.com/wp-content/uploads/2019/06/shop-1-img-1.jpg',
-    },
-    {
-        name: 'Cinnamon Alba',
-        category: 'Organic food',
-        price: '$37.99',
-        image: 'https://krafti.qodeinteractive.com/wp-content/uploads/2019/07/shop-1-img-2.jpg',
-    },
-    {
-        name: 'Dark Chocolate',
-        category: 'Organic food',
-        price: '$17.99',
-        image: 'https://krafti.qodeinteractive.com/wp-content/uploads/2019/07/shop-1-img-3.jpg',
-    },
-    {
-        name: 'Wind Chimes',
-        category: 'Home Decor',
-        price: '$44.99',
-        image: 'https://krafti.qodeinteractive.com/wp-content/uploads/2019/07/shop-1-img-4.jpg',
-    },
-    {
-        name: 'Wooden Toy',
-        category: 'Wooden toys',
-        price: '$38.99',
-        image: 'https://krafti.qodeinteractive.com/wp-content/uploads/2019/07/shop-1-img-5.jpg',
-    },
-    {
-        name: 'Organic Tea',
-        category: 'Organic food',
-        price: '$13.99',
-        image: 'https://krafti.qodeinteractive.com/wp-content/uploads/2019/07/shop-1-img-6.jpg',
-    }
-];
+import { products } from '@/constants/products';
 
 const ITEM_WIDTH = 280; // item width + margin
 

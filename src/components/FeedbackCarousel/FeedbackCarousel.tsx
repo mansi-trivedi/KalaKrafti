@@ -45,7 +45,7 @@ const FeedbackCarousel: React.FC<CarouselProp> = (props) => {
                                     src={slide.image}
                                     alt="testimonials-image"
                                     fill
-                                    objectFit="cover"
+                                    className="object-cover"
                                 />
                             </div>
                             <div className='text-center'>

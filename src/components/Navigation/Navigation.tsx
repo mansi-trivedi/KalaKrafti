@@ -1,11 +1,12 @@
 import React from "react";
 // import Link from "next/link";
 import { menuItems } from "@/constants/menuItems";
+import Link from "next/link";
 
 const Navigation = () => {
     return (
         <div className="">
-            <ul className="flex justify-center items-center gap-5 xl:gap-8 2xl:gap-11">
+            <ul className="flex flex-col justify-center items-center gap-5 xl:gap-8 2xl:gap-11 lg:flex-row xl:flex-row 2xl:flex-row">
                 {menuItems.map((item, index) => {
                     return (
                         <li
@@ -16,9 +17,12 @@ const Navigation = () => {
                             {/* <Link href={item.href} className="block">
                                 <span>{item.label}</span>
                             </Link> */}
-                            <a href={item.href} className="block">
+                            {item.label === 'Products' ? <Link href={item.href} className="block">
                                 <span>{item.label}</span>
-                            </a>
+                            </Link> :
+                                <a href={item.href} className="block">
+                                    <span>{item.label}</span>
+                                </a>}
                         </li>
                     );
                 })}

@@ -4,7 +4,7 @@ const menuItems = [
     label: "Home",
   },
   {
-    href: "#products",
+    href: "/products",
     label: "Products",
   },
   {

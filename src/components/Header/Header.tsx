@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
     FiHeart,
     FiShoppingCart,
@@ -10,6 +10,10 @@ import Link from "next/link";
 import Navigation from "../Navigation/Navigation";
 
 const Header = () => {
+    const [navigationModal, setNavigationModal] = useState(false)
+    const handleNavigationModal = () => {
+        setNavigationModal((prev) => !prev)
+    }
     return (
         <header id="home" className="p-5 flex items-center justify-between border-gray-200 relative 
             after:content-[''] after:block after:absolute after:top-[67px] after:lg:top-[73px] after:xl:top-[73px] after:2xl:top-[73px] after:left-0 after:w-full after:h-8
@@ -37,7 +41,7 @@ const Header = () => {
                         <FiShoppingCart size={20} className="hover:fill-brick" />
                     </Link>
 
-                    <button type="button">
+                    <button type="button" onClick={handleNavigationModal}>
                         <FiMenu
                             size={20}
                             className="cursor-pointer lg:hidden xl:hidden 2xl:hidden 3xl:hidden transition-transform duration-500 hover:rotate-y-180"
@@ -45,6 +49,11 @@ const Header = () => {
                     </button>
                 </div>
             </div>
+            {
+                navigationModal && <div className="absolute top-18 z-10 bg-beige w-[90%] pt-8 pb-3">
+                    <Navigation />
+                </div>
+            }
         </header>
     );
 };
