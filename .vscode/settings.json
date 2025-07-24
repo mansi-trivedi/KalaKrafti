@@ -1,2 +1,39 @@
 {
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.fontFamily": "'space mono', 'JetBrains Mono NL', 'Google Sans Mono', 'Fira Code'",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true,
+  "editor.fontLigatures": true,
+  "editor.minimap.enabled": true,
+  "editor.wordWrap": "on",
+  "terminal.integrated.env.windows": {},
+  "editor.guides.bracketPairs": true,
+  "git.openRepositoryInParentFolders": "never",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.semanticHighlighting.enabled": true,
+  "editor.formatOnPaste": true,
+  "editor.cursorBlinking": "smooth",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorWidth": 3,
+  "editor.bracketPairColorization.enabled": true,
+  "terminal.integrated.enableMultiLinePasteWarning": "auto",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "window.zoomPerWindow": true,
+  "editor.accessibilitySupport": "off",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "explorer.confirmDelete": false,
+  "liveServer.settings.AdvanceCustomBrowserCmdLine": "",
+  "editor.fontWeight": "500",
 }

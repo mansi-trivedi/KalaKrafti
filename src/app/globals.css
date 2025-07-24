@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-
   @keyframes rotate-forever {
     from {
       transform: rotate(0deg);
@@ -24,7 +23,7 @@
   --color-cloudGray: #eeeee9;
   --color-brick: #a55e3f;
   --color-laundryWhite: #f6f6f0;
-  --color-beige: #F5D8C7;
+  --color-beige: #f5d8c7;
   --color-mossgreen: #8d8132;
   --color-sealbrown: #672900;
   --color-linen: #fbefe7;
@@ -81,22 +80,22 @@ body {
   --s: 20px;
   width: 320px;
   height: 100px;
-  mask:
-    conic-gradient(#000 0 0) 50% / calc(100% - var(--s)) calc(100% - var(--s)) no-repeat,
+  mask: conic-gradient(#000 0 0) 50% / calc(100% - var(--s))
+      calc(100% - var(--s)) no-repeat,
     repeating-conic-gradient(
-      from 45deg,
-      #0000 0,
-      #000 1deg 89deg,
-      #0000 25% 50%
-    ) calc(var(--s) / 2) 0 / var(--s) var(--s);
-  -webkit-mask:
-    conic-gradient(#000 0 0) 50% / calc(100% - var(--s)) calc(100% - var(--s)) no-repeat,
+        from 45deg,
+        #0000 0,
+        #000 1deg 89deg,
+        #0000 25% 50%
+      )
+      calc(var(--s) / 2) 0 / var(--s) var(--s);
+  -webkit-mask: conic-gradient(#000 0 0) 50% / calc(100% - var(--s))
+      calc(100% - var(--s)) no-repeat,
     repeating-conic-gradient(
-      from 45deg,
-      #0000 0,
-      #000 1deg 89deg,
-      #0000 25% 50%
-    ) calc(var(--s) / 2) 0 / var(--s) var(--s);
+        from 45deg,
+        #0000 0,
+        #000 1deg 89deg,
+        #0000 25% 50%
+      )
+      calc(var(--s) / 2) 0 / var(--s) var(--s);
 }
-
-
