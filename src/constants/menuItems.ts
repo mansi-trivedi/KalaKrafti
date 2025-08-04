@@ -1,6 +1,6 @@
 const menuItems = [
   {
-    href: "#home",
+    href: "/",
     label: "Home",
   },
   {

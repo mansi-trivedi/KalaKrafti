@@ -4,10 +4,9 @@ import Filter from "../Filter/Filter";
 import { products } from "@/constants/products";
 import Image from "next/image";
 import Pagination from "../Pagination/Pagination";
-import { RxCross2 } from "react-icons/rx";
-import { FaFilter } from "react-icons/fa";
 import CustomModal from "../Modal/Modal";
 import { PriceType } from "types/filter";
+import Icon from "../Icon/Icon";
 
 const PRODUCTS_PER_PAGE = 6;
 
@@ -54,18 +53,16 @@ const AllProduct = () => {
         className="px-2 lg:hidden xl:hidden 2xl:hidden text-brick flex-row flex"
         onClick={handleFilterModal}
       >
-        <FaFilter size={20} />
+        <Icon icon="filter" size={26} />
         <p className="text-brick tracking-wider font-semibold px-2">FILTER</p>
       </div>
       <CustomModal
         isOpen={filterModal}
         contentStyles={{ width: "90%", position: "relative" }}
       >
-        <RxCross2
-          size={20}
-          onClick={handleFilterModal}
-          className="absolute right-3"
-        />
+        <button onClick={handleFilterModal}>
+          <Icon icon="cross" className="absolute right-3" />
+        </button>
         <Filter
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}
@@ -89,16 +86,17 @@ const AllProduct = () => {
               className="flex justify-center items-center bg-brick rounded-full text-white text-sm font-semibold px-3 py-1"
             >
               <span>{category}</span>
-              <RxCross2
-                className="ml-2"
-                onClick={() => removeCategory(category)}
-              />
+              <button onClick={() => removeCategory(category)}>
+                <Icon icon="crossWhite" className="ml-2" />
+              </button>
             </div>
           ))}
           {price.lable && (
             <div className="flex justify-center items-center bg-brick rounded-full text-white text-sm font-semibold px-3 py-1">
               <span>{price.lable}</span>
-              <RxCross2 className="ml-2" onClick={removePrice} />
+              <button onClick={removePrice}>
+                <Icon icon="crossWhite" className="ml-2" />
+              </button>
             </div>
           )}
           {(price.lable || selectedCategories.length !== 0) && (

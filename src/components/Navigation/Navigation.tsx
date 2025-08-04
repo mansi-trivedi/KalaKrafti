@@ -16,7 +16,7 @@ const Navigation = () => {
               {/* <Link href={item.href} className="block">
                                 <span>{item.label}</span>
                             </Link> */}
-              {item.label === "Products" ? (
+              {item.label === "Products" || item.label === "Home" ? (
                 <Link href={item.href} className="block">
                   <span>{item.label}</span>
                 </Link>

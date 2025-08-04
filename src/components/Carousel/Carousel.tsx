@@ -1,8 +1,8 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { slides } from "../../constants/introSlide";
 import { CarouselProp } from "types/carousel";
+import Icon from "../Icon/Icon";
 
 const Carousel: React.FC<CarouselProp> = (props) => {
   const { autoSlide, autoSlideInterval = 3000 } = props;
@@ -73,7 +73,7 @@ const Carousel: React.FC<CarouselProp> = (props) => {
           onClick={prev}
           className="absolute -top-2 -left-9 text-brick text-xl transition-all duration-700 ease-in-out hover:-left-11"
         >
-          <FaChevronLeft />
+          <Icon icon="leftArrow" />
         </button>
       </div>
       <div className="absolute top-[27vh] right-0 border-t-[50px] border-t-transparent border-b-[50px] border-b-transparent border-r-[40px] lg:border-r-[50px] xl:border-r-[50px] 2xl:border-r-[50px] 3xl:border-r-[50px] border-r-white2">
@@ -81,7 +81,7 @@ const Carousel: React.FC<CarouselProp> = (props) => {
           onClick={next}
           className="absolute -top-2 -right-9 text-brick text-xl transition-all duration-700 ease-in-out hover:-right-11"
         >
-          <FaChevronRight />
+          <Icon icon="rightArrow" />
         </button>
       </div>
       <div className="absolute bottom-5 lg:bottom-10 xl:bottom-10 2xl:bottom-10 right-0 left-0">

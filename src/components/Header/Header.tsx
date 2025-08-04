@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { FiHeart, FiShoppingCart, FiMenu, FiUser } from "react-icons/fi";
 import Link from "next/link";
 import Navigation from "../Navigation/Navigation";
+import Icon from "../Icon/Icon";
 
 const Header = () => {
   const [navigationModal, setNavigationModal] = useState(false);
@@ -32,26 +32,26 @@ const Header = () => {
             href="/login"
             className="p-0.5 transition-transform duration-500 hover:rotate-y-180"
           >
-            <FiUser size={20} className="hover:fill-brick" />
+            <Icon icon="user" className="hover:fill-brick" />
           </Link>
 
           <Link
             href="/wishlist"
             className="p-0.5 transition-transform duration-500 hover:rotate-y-180"
           >
-            <FiHeart size={20} className="hover:fill-brick" />
+            <Icon icon="heart" className="hover:fill-brick" />
           </Link>
 
           <Link
             href="/cart"
             className="p-0.5 transition-transform duration-500 hover:rotate-y-180"
           >
-            <FiShoppingCart size={20} className="hover:fill-brick" />
+            <Icon icon="cart" className="hover:fill-brick" />
           </Link>
 
           <button type="button" onClick={handleNavigationModal}>
-            <FiMenu
-              size={20}
+            <Icon
+              icon="menu"
               className="cursor-pointer lg:hidden xl:hidden 2xl:hidden 3xl:hidden transition-transform duration-500 hover:rotate-y-180"
             />
           </button>

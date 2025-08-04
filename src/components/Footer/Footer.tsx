@@ -1,7 +1,7 @@
 import React from "react";
 import { menuItems } from "@/constants/menuItems";
 import Link from "next/link";
-import { FaYoutube, FaInstagramSquare, FaFacebook } from "react-icons/fa";
+import Icon from "../Icon/Icon";
 
 const Footer = () => {
   return (
@@ -23,13 +23,13 @@ const Footer = () => {
 
         <div className="flex justify-center space-x-4 mb-4">
           <a href="#" className="text-brick hover:cursor-pointer">
-            <FaInstagramSquare size={20} />
+            <Icon icon="instagram" />
           </a>
           <a href="#" className="text-brick hover:cursor-pointer">
-            <FaFacebook size={20} />
+            <Icon icon="facebook" />
           </a>
           <a href="#" className="text-brick hover:cursor-pointer">
-            <FaYoutube size={20} />
+            <Icon icon="youTube" />
           </a>
         </div>
         <h1 className="text-brick font-bold">Kala Krafti</h1>

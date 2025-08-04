@@ -2,7 +2,7 @@ const shopCategories = [
   {
     title: "SHOP ORGANIC",
     image:
-      "https://krafti.qodeinteractive.com/wp-content/uploads/2019/06/main-home-banner-img-1.jpg", // Replace with actual path
+      "https://krafti.qodeinteractive.com/wp-content/uploads/2019/06/main-home-banner-img-1.jpg",
     bgColor: "bg-mossgreen",
     textColor: "text-linen",
   },

@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { products } from "@/constants/products";
+import Icon from "../Icon/Icon";
 
 const ITEM_WIDTH = 280;
 
@@ -29,13 +29,13 @@ export default function ProductCarousel() {
         onClick={handlePrev}
         className="absolute top-40 left-0 z-10 text-brick hover:-left-1 transition-all duration-300"
       >
-        <FaChevronLeft size={30} />
+        <Icon icon="leftArrow" />
       </button>
       <button
         onClick={handleNext}
         className="absolute top-40 right-0 text-brick hover:-right-1 transition-all duration-300"
       >
-        <FaChevronRight size={30} />
+        <Icon icon="rightArrow" />
       </button>
 
       <div className="overflow-hidden">

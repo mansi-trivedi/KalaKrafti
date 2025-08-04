@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { quickSand, robFont, openSans } from "@/constants/fonts";
 import "./globals.css";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 
 export const metadata: Metadata = {
   title: "Kala Krafti",
@@ -17,7 +19,9 @@ export default function RootLayout({
       <body
         className={`${quickSand.variable} ${openSans.variable} ${robFont.variable}`}
       >
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
