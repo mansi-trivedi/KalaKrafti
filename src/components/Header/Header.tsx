@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Navigation from "../Navigation/Navigation";
 import Icon from "../Icon/Icon";
+import Button from "../Button/Button";
 
 const Header = () => {
   const [navigationModal, setNavigationModal] = useState(false);
@@ -49,12 +50,12 @@ const Header = () => {
             <Icon icon="cart" className="hover:fill-brick" />
           </Link>
 
-          <button type="button" onClick={handleNavigationModal}>
+          <Button type="button" onClick={handleNavigationModal}>
             <Icon
               icon="menu"
               className="cursor-pointer lg:hidden xl:hidden 2xl:hidden 3xl:hidden transition-transform duration-500 hover:rotate-y-180"
             />
-          </button>
+          </Button>
         </div>
       </div>
       {navigationModal && (

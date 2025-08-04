@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { slides } from "../../constants/introSlide";
 import { CarouselProp } from "types/carousel";
 import Icon from "../Icon/Icon";
+import Button from "../Button/Button";
 
 const Carousel: React.FC<CarouselProp> = (props) => {
   const { autoSlide, autoSlideInterval = 3000 } = props;
@@ -56,7 +57,8 @@ const Carousel: React.FC<CarouselProp> = (props) => {
             >
               {slide.paragraphText}
             </p>
-            <button
+            <Button
+              type="button"
               className={`transition-all delay-700 duration-700 ease-in-out text-white2 font-xl my-10 px-8 py-3 bg-gradient-to-br from-[#5C4033] via-[#A0522D] to-[#DEB887] ${
                 curr === index
                   ? "translate-y-0 opacity-100"
@@ -64,25 +66,27 @@ const Carousel: React.FC<CarouselProp> = (props) => {
               }`}
             >
               VIEW MORE
-            </button>
+            </Button>
           </div>
         ))}
       </div>
       <div className="absolute top-[27vh] left-0 border-t-[50px] border-t-transparent border-b-[50px] border-b-transparent border-l-[50px] border-l-white2">
-        <button
+        <Button
+          type="button"
           onClick={prev}
           className="absolute -top-2 -left-9 text-brick text-xl transition-all duration-700 ease-in-out hover:-left-11"
         >
           <Icon icon="leftArrow" />
-        </button>
+        </Button>
       </div>
       <div className="absolute top-[27vh] right-0 border-t-[50px] border-t-transparent border-b-[50px] border-b-transparent border-r-[40px] lg:border-r-[50px] xl:border-r-[50px] 2xl:border-r-[50px] 3xl:border-r-[50px] border-r-white2">
-        <button
+        <Button
+          type="button"
           onClick={next}
           className="absolute -top-2 -right-9 text-brick text-xl transition-all duration-700 ease-in-out hover:-right-11"
         >
           <Icon icon="rightArrow" />
-        </button>
+        </Button>
       </div>
       <div className="absolute bottom-5 lg:bottom-10 xl:bottom-10 2xl:bottom-10 right-0 left-0">
         <div className="flex items-center justify-center gap-8">

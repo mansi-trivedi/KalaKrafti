@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { products } from "@/constants/products";
 import Icon from "../Icon/Icon";
+import Button from "../Button/Button";
 
 const ITEM_WIDTH = 280;
 
@@ -25,18 +26,18 @@ export default function ProductCarousel() {
 
   return (
     <div className="relative w-[100%] overflow-hidden">
-      <button
+      <Button
         onClick={handlePrev}
         className="absolute top-40 left-0 z-10 text-brick hover:-left-1 transition-all duration-300"
       >
         <Icon icon="leftArrow" />
-      </button>
-      <button
+      </Button>
+      <Button
         onClick={handleNext}
         className="absolute top-40 right-0 text-brick hover:-right-1 transition-all duration-300"
       >
         <Icon icon="rightArrow" />
-      </button>
+      </Button>
 
       <div className="overflow-hidden">
         <div
@@ -59,9 +60,9 @@ export default function ProductCarousel() {
                     className="object-cover"
                   />
                   <div className="transition-all duration-500 absolute inset-0 flex justify-center items-center opacity-0 group-hover:opacity-100">
-                    <button className="text-white2 font-xl w-[75%] py-3 bg-gradient-to-br from-[#5C4033] via-[#A0522D] to-[#DEB887]">
+                    <Button className="text-white2 font-xl w-[75%] py-3 bg-gradient-to-br from-[#5C4033] via-[#A0522D] to-[#DEB887]">
                       VIEW MORE
-                    </button>
+                    </Button>
                   </div>
                 </div>
                 <h2 className="text-xl font-semibold tracking-widest text-brick uppercase mt-3">

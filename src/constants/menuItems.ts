@@ -8,11 +8,11 @@ const menuItems = [
     label: "Products",
   },
   {
-    href: "#blog",
+    href: "/blog",
     label: "Blog",
   },
   {
-    href: "#contact_us",
+    href: "/contact-us",
     label: "Contact Us",
   },
 ];

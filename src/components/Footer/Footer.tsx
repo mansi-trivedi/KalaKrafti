@@ -1,7 +1,7 @@
 import React from "react";
 import { menuItems } from "@/constants/menuItems";
 import Link from "next/link";
-import Icon from "../Icon/Icon";
+import SocialMedia from "../SocialMedia/SocialMedia";
 
 const Footer = () => {
   return (
@@ -20,17 +20,8 @@ const Footer = () => {
             );
           })}
         </nav>
-
-        <div className="flex justify-center space-x-4 mb-4">
-          <a href="#" className="text-brick hover:cursor-pointer">
-            <Icon icon="instagram" />
-          </a>
-          <a href="#" className="text-brick hover:cursor-pointer">
-            <Icon icon="facebook" />
-          </a>
-          <a href="#" className="text-brick hover:cursor-pointer">
-            <Icon icon="youTube" />
-          </a>
+        <div className="flex justify-center">
+          <SocialMedia />
         </div>
         <h1 className="text-brick font-bold">Kala Krafti</h1>
       </div>
