@@ -13,7 +13,7 @@ const PRODUCTS_PER_PAGE = 6;
 const AllProduct = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [price, setPrice] = useState<PriceType>({});
+  const [price, setPrice] = useState<PriceType>(null);
   const [filterModal, setFilterModal] = useState(false);
 
   const totalPages = Math.ceil(products.length / PRODUCTS_PER_PAGE);
@@ -30,17 +30,16 @@ const AllProduct = () => {
   };
 
   const removePrice = () => {
-    setPrice({});
+    setPrice(null);
   };
 
   const removeCategory = (category: string) => {
-    console.log("category", category);
     setSelectedCategories((prev) => prev.filter((b) => b !== category));
   };
 
   const handleClearAll = () => {
     setSelectedCategories([]);
-    setPrice({});
+    setPrice(null);
   };
 
   const handleFilterModal = () => {
@@ -91,15 +90,15 @@ const AllProduct = () => {
               </button>
             </div>
           ))}
-          {price.lable && (
+          {price?.label && (
             <div className="flex justify-center items-center bg-brick rounded-full text-white text-sm font-semibold px-3 py-1">
-              <span>{price.lable}</span>
+              <span>{price?.label}</span>
               <button onClick={removePrice}>
                 <Icon icon="crossWhite" className="ml-2" />
               </button>
             </div>
           )}
-          {(price.lable || selectedCategories.length !== 0) && (
+          {(price?.label || selectedCategories.length !== 0) && (
             <button
               onClick={handleClearAll}
               className="border-2 border-brick rounded text-sm px-3 py-1 font-semibold"
