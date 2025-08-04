@@ -1,7 +1,7 @@
 type PriceType = {
-  lable: string;
+  label: string;
   value: string;
-};
+} | null;
 
 type FilterProp = {
   setPrice: React.Dispatch<React.SetStateAction<PriceType>>;
