@@ -74,7 +74,7 @@ const Carousel: React.FC<CarouselProp> = (props) => {
         <Button
           type="button"
           onClick={prev}
-          className="absolute -top-2 -left-9 text-brick text-xl transition-all duration-700 ease-in-out hover:-left-11"
+          className="absolute -top-3 -left-9 text-brick text-xl transition-all duration-700 ease-in-out hover:-left-11"
         >
           <Icon icon="leftArrow" />
         </Button>
@@ -83,7 +83,7 @@ const Carousel: React.FC<CarouselProp> = (props) => {
         <Button
           type="button"
           onClick={next}
-          className="absolute -top-2 -right-9 text-brick text-xl transition-all duration-700 ease-in-out hover:-right-11"
+          className="absolute -top-3 -right-9 text-brick text-xl transition-all duration-700 ease-in-out hover:-right-11"
         >
           <Icon icon="rightArrow" />
         </Button>

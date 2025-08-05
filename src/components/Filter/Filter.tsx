@@ -10,7 +10,7 @@ const priceOptions = [
 ];
 
 const Filter: React.FC<FilterProp> = (prop) => {
-  const { selectedCategories, setPrice, setSelectedCategories } = prop;
+  const { selectedCategories, setPrice, setSelectedCategories, price } = prop;
   const handleCategoryChange = (category: string) => {
     setSelectedCategories((prev) =>
       prev.includes(category)
@@ -62,7 +62,7 @@ const Filter: React.FC<FilterProp> = (prop) => {
                 type="radio"
                 name="priceRange"
                 value={option.label}
-                checked={false} // TODO: check logic for checked and onChange handler
+                checked={price?.label === option.label}
                 onChange={() =>
                   setPrice({
                     value: option.value[0].toString(),

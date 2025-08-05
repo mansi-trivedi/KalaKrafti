@@ -63,8 +63,8 @@ const Idea = () => {
               Lorem ipsum dolor sit amet a con sectet adipisicing elit se do
               eiuso tempor incidid unt ut labore et dolore
             </p>
-            <div className="flex items-center pt-8">
-              <div className="rounded-full h-0.5 w-8 bg-brick transition-all duration-500 ease-out bg-linear-to-r from-[#432d23] to-[#DEB887] hover:w-16 hover:bg-linear-to-r hover:from-[#dea254] hover:via-[#432d23] hover:to-[#DEB887] "></div>
+            <div className="flex items-center mt-8 group cursor-default">
+              <div className="rounded-full h-0.5 w-8 bg-brick transition-all duration-500 ease-out bg-linear-to-r from-[#432d23] to-[#DEB887] group-hover:w-16 group-hover:bg-linear-to-r group-hover:from-[#dea254] group-hover:via-[#432d23] group-hover:to-[#DEB887] "></div>
               <div className="tracking-wider text-sm relative font-quickSand px-3 text-brick">
                 VIEW MORE
               </div>
@@ -83,8 +83,8 @@ const Idea = () => {
               Lorem ipsum dolor sit amet a con sectet adipisicing elit se do
               eiuso tempor incidid unt ut labore et dolore
             </p>
-            <div className="flex items-center pt-8">
-              <div className="rounded-full h-0.5 w-8 bg-brick transition-all duration-500 ease-out bg-linear-to-r from-[#432d23] to-[#DEB887] hover:w-16 hover:bg-linear-to-r hover:from-[#dea254] hover:via-[#432d23] hover:to-[#DEB887] "></div>
+            <div className="flex items-center mt-8 group cursor-default">
+              <div className="rounded-full h-0.5 w-8 bg-brick transition-all duration-500 ease-out bg-linear-to-r from-[#432d23] to-[#DEB887] group-hover:w-16 group-hover:bg-linear-to-r group-hover:from-[#dea254] group-hover:via-[#432d23] group-hover:to-[#DEB887] "></div>
               <div className="tracking-wider text-sm relative font-quickSand px-3 text-brick">
                 VIEW MORE
               </div>
