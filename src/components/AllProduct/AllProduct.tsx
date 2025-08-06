@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Filter from "../Filter/Filter";
 import { products } from "@/constants/products";
 import Image from "next/image";
@@ -16,9 +16,40 @@ const AllProduct = () => {
   const [price, setPrice] = useState<PriceType>(null);
   const [filterModal, setFilterModal] = useState(false);
 
-  const totalPages = Math.ceil(products.length / PRODUCTS_PER_PAGE);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setFilterModal(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategories, price]);
+
+  const filteredProducts = products.filter((product) => {
+    const categoryMatch =
+      selectedCategories.length === 0 ||
+      selectedCategories.includes(product.category);
+
+    const numericPrice = parseInt(product.price.replace(/[^0-9]/g, ""), 10);
+
+    const priceMatch =
+      !price ||
+      (price.value.length === 1
+        ? numericPrice >= price.value[0]
+        : numericPrice >= price.value[0] && numericPrice <= price.value[1]);
+
+    return categoryMatch && priceMatch;
+  });
+
+  const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
   const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
-  const paginatedProducts = products.slice(
+  const paginatedProducts = filteredProducts.slice(
     startIndex,
     startIndex + PRODUCTS_PER_PAGE
   );
@@ -29,32 +60,26 @@ const AllProduct = () => {
     }
   };
 
-  const removePrice = () => {
-    setPrice(null);
-  };
-
-  const removeCategory = (category: string) => {
+  const removePrice = () => setPrice(null);
+  const removeCategory = (category: string) =>
     setSelectedCategories((prev) => prev.filter((b) => b !== category));
-  };
-
+  
   const handleClearAll = () => {
     setSelectedCategories([]);
     setPrice(null);
   };
-
-  const handleFilterModal = () => {
-    setFilterModal((prev) => !prev);
-  };
+  const handleFilterModal = () => setFilterModal((prev) => !prev);
 
   return (
-    <div className="flex py-16 bg-white flex-col lg:flex-row xl:flex-row 2xl:flex-row">
+    <div className="flex py-16 bg-white flex-col lg:flex-row">
       <div
-        className="px-2 lg:hidden xl:hidden 2xl:hidden text-brick flex-row flex"
+        className="px-2 lg:hidden text-brick flex-row flex"
         onClick={handleFilterModal}
       >
         <Icon icon="filter" size={26} />
         <p className="text-brick tracking-wider font-semibold px-2">FILTER</p>
       </div>
+
       <CustomModal
         isOpen={filterModal}
         contentStyles={{ width: "90%", position: "relative" }}
@@ -69,7 +94,8 @@ const AllProduct = () => {
           setPrice={setPrice}
         />
       </CustomModal>
-      <div className="w-[27vw] shadow-md hidden lg:block xl:block 2xl:block">
+
+      <div className="w-[27vw] shadow-md hidden lg:block">
         <Filter
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}
@@ -77,6 +103,7 @@ const AllProduct = () => {
           setPrice={setPrice}
         />
       </div>
+
       <div className="lg:w-[80vw] px-2 w-[100vw]">
         <div className="flex items-center p-2 space-x-2">
           {selectedCategories.map((category, index) => (
@@ -92,13 +119,13 @@ const AllProduct = () => {
           ))}
           {price?.label && (
             <div className="flex justify-center items-center bg-brick rounded-full text-white text-sm font-semibold px-3 py-1">
-              <span>{price?.label}</span>
+              <span>{price.label}</span>
               <button onClick={removePrice}>
                 <Icon icon="crossWhite" className="ml-2" />
               </button>
             </div>
           )}
-          {(price?.label || selectedCategories.length !== 0) && (
+          {(price?.label || selectedCategories.length > 0) && (
             <button
               onClick={handleClearAll}
               className="border-2 border-brick rounded text-sm px-3 py-1 font-semibold"
@@ -107,11 +134,12 @@ const AllProduct = () => {
             </button>
           )}
         </div>
-        <div className="grid lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 grid-cols-2 border border-brick divide-x divide-y divide-brick">
+
+        <div className="grid lg:grid-cols-3 grid-cols-2 border border-brick border-r-0 border-b-0">
           {paginatedProducts.map((product, index) => (
             <div
               key={index}
-              className="group flex-shrink-0 border border-brick"
+              className="group flex-shrink-0 border border-brick border-l-0 border-t-0"
             >
               <div className="flex flex-col items-center pb-6">
                 <div className="relative h-[140px] w-[140px] m-6">
@@ -140,6 +168,7 @@ const AllProduct = () => {
             </div>
           ))}
         </div>
+
         <Pagination
           handlePageChange={handlePageChange}
           totalPages={totalPages}

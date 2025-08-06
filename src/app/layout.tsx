@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Kala Krafti",
   description: "this site contain different type of art pieces",
   icons: {
-    icon: "/kalakrafti.png",
+    icon: "/kalakrafti.ico",
   },
 };
 

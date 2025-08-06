@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Navigation from "../Navigation/Navigation";
 import Icon from "../Icon/Icon";
@@ -7,6 +7,18 @@ import Button from "../Button/Button";
 
 const Header = () => {
   const [navigationModal, setNavigationModal] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setNavigationModal(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const handleNavigationModal = () => {
     setNavigationModal((prev) => !prev);
   };

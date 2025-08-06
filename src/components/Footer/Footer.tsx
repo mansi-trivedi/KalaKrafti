@@ -23,7 +23,9 @@ const Footer = () => {
         <div className="flex justify-center">
           <SocialMedia />
         </div>
-        <h1 className="text-brick font-bold">Kala Krafti</h1>
+        <Link href="/">
+          <h1 className="text-brick font-bold cursor-pointer">Kala Krafti</h1>
+        </Link>
       </div>
       <div className="bg-brick h-8"></div>
     </footer>

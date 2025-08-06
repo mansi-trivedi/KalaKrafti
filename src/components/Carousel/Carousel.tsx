@@ -57,7 +57,7 @@ const Carousel: React.FC<CarouselProp> = (props) => {
             >
               {slide.paragraphText}
             </p>
-            <Button
+            {/* <Button
               type="button"
               className={`transition-all delay-700 duration-700 ease-in-out text-white2 font-xl my-10 px-8 py-3 bg-gradient-to-br from-[#5C4033] via-[#A0522D] to-[#DEB887] ${
                 curr === index
@@ -66,7 +66,7 @@ const Carousel: React.FC<CarouselProp> = (props) => {
               }`}
             >
               VIEW MORE
-            </Button>
+            </Button> */}
           </div>
         ))}
       </div>

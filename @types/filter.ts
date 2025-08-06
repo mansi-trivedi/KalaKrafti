@@ -1,6 +1,6 @@
 type PriceType = {
   label: string;
-  value: string;
+  value: number[];
 } | null;
 
 type FilterProp = {
