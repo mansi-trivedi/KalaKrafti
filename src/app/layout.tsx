@@ -8,6 +8,9 @@ import Scrollup from "@/components/ScrollUp/Scrollup";
 export const metadata: Metadata = {
   title: "Kala Krafti",
   description: "this site contain different type of art pieces",
+  icons: {
+    icon: "/kalakrafti.png",
+  },
 };
 
 export default function RootLayout({
