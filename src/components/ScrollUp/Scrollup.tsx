@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Icon from "../Icon/Icon";
 
-const Scrollup = () => {
+const ScrollUp = () => {
   const [showScroll, setShowScroll] = useState<boolean>(false);
 
   useEffect(() => {
@@ -40,4 +40,4 @@ const Scrollup = () => {
   );
 };
 
-export default Scrollup;
+export default ScrollUp;

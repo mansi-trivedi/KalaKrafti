@@ -1,12 +1,12 @@
-import AllProduct from "@/components/AllProduct/AllProduct";
-import Scrollup from "@/components/ScrollUp/Scrollup";
+import AllProduct from "@/components/AllProducts/AllProducts";
+import ScrollUp from "@/components/ScrollUp/ScrollUp";
 import React from "react";
 
 const page = () => {
   return (
     <>
-        <Scrollup />
-        <AllProduct />
+      <ScrollUp />
+      <AllProduct />
     </>
   );
 };

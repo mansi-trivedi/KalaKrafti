@@ -1,9 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import { products } from "@/constants/products";
 import Icon from "../Icon/Icon";
 import Button from "../Button/Button";
+import Product from "../Product/Product";
 
 const ITEM_WIDTH = 280;
 
@@ -51,7 +52,7 @@ export default function ProductCarousel() {
               key={index}
               className="group flex-shrink-0 mx-5 py-4 w-[250px]"
             >
-              <div className="flex flex-col items-center">
+              {/* <div className="flex flex-col items-center">
                 <div className="relative h-[300px] w-[250px]">
                   <Image
                     src={product.image}
@@ -70,7 +71,8 @@ export default function ProductCarousel() {
                 </h2>
                 <p className="text-sm my-2 font-light">{product.category}</p>
                 <p className="text-brick font-semibold">{product.price}</p>
-              </div>
+              </div> */}
+              <Product {...product} />
             </div>
           ))}
         </div>

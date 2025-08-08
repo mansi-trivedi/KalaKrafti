@@ -2,11 +2,12 @@
 import React, { useState, useEffect } from "react";
 import Filter from "../Filter/Filter";
 import { products } from "@/constants/products";
-import Image from "next/image";
+// import Image from "next/image";
 import Pagination from "../Pagination/Pagination";
 import CustomModal from "../Modal/Modal";
 import { PriceType } from "types/filter";
 import Icon from "../Icon/Icon";
+import Product from "../Product/Product";
 
 const PRODUCTS_PER_PAGE = 6;
 
@@ -63,7 +64,7 @@ const AllProduct = () => {
   const removePrice = () => setPrice(null);
   const removeCategory = (category: string) =>
     setSelectedCategories((prev) => prev.filter((b) => b !== category));
-  
+
   const handleClearAll = () => {
     setSelectedCategories([]);
     setPrice(null);
@@ -139,9 +140,9 @@ const AllProduct = () => {
           {paginatedProducts.map((product, index) => (
             <div
               key={index}
-              className="group flex-shrink-0 border border-brick border-l-0 border-t-0"
+              className="group flex-shrink-0 border p-5 border-brick border-l-0 border-t-0"
             >
-              <div className="flex flex-col items-center pb-6">
+              {/* <div className="flex flex-col items-center pb-6">
                 <div className="relative h-[140px] w-[140px] m-6">
                   <Image
                     src={product.image}
@@ -164,7 +165,8 @@ const AllProduct = () => {
                 <p className="text-brick font-semibold text-center">
                   {product.price}
                 </p>
-              </div>
+              </div> */}
+              <Product {...product} />
             </div>
           ))}
         </div>
