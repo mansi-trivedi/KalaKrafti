@@ -1,0 +1,80 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Order Confirmation Email</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            mso-line-height-rule: exactly;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            font-family: 'Lato', Arial, Helvetica, sans-serif;
+        }
+
+        p {
+            mso-line-height-rule: exactly;
+        }
+
+        p {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        @media screen {
+            body {
+                font-family: 'Lato', Arial, Helvetica, sans-serif;
+            }
+        }
+
+        @media only screen and (max-width: 640px) {
+            body {
+                margin: 0px !important;
+                padding: 0px !important;
+            }
+
+            body {
+                -webkit-text-size-adjust: none !important;
+            }
+        }
+        .span {
+            font-style: italic;
+            padding-left: 5px;
+        }
+
+        .heading {
+            font-weight: bold
+        }
+
+        .main {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body
+    style="padding: 0; margin: 0; -webkit-font-smoothing:antialiased; background-color:#f1f1f1; -webkit-text-size-adjust:none;">
+    <div class="main">
+        <div class="head">
+            <span class="heading">Customer Name: </span>
+            <span class="span">{{name}}</span>
+        </div>
+        <p>{{text}}</p>
+    </div>
+</body>
+
+</html>
