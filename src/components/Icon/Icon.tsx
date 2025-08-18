@@ -13,6 +13,7 @@ import { ReactComponent as CrossWhiteSvg } from "@/Icons/crossWhite.svg";
 import { ReactComponent as YouTubeSvg } from "@/Icons/youtube.svg";
 import { ReactComponent as InstagramSvg } from "@/Icons/instagram.svg";
 import { ReactComponent as facebookSvg } from "@/Icons/facebook.svg";
+import { ReactComponent as DownArrowSvg } from "@/Icons/downArrow.svg";
 
 type IconSvgComponent = React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 
@@ -30,6 +31,7 @@ type IconType = {
   youTube: IconSvgComponent;
   facebook: IconSvgComponent;
   instagram: IconSvgComponent;
+  downArrow: IconSvgComponent;
 };
 
 // Mapping SVG component to Icon
@@ -47,6 +49,7 @@ export const ICON_MAPPING: IconType = {
   youTube: YouTubeSvg,
   facebook: facebookSvg,
   instagram: InstagramSvg,
+  downArrow: DownArrowSvg,
 };
 
 export type IconTypeProp =
@@ -62,7 +65,8 @@ export type IconTypeProp =
   | "crossWhite"
   | "facebook"
   | "instagram"
-  | "youTube";
+  | "youTube"
+  | "downArrow";
 
 export type IconSizes =
   | 8

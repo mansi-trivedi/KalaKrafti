@@ -46,6 +46,7 @@ const ContactForm = () => {
         const email = formData.get("email") as string;
         const name = formData.get("name") as string;
         const message = formData.get("message") as string;
+        const phone = formData.get("phone") as string;
         {
           try {
             const response = await fetch("/api/send-email", {
@@ -54,6 +55,7 @@ const ContactForm = () => {
                 name,
                 email,
                 message,
+                phone,
               }),
               headers: {
                 "Content-Type": "application/json",
@@ -86,6 +88,13 @@ const ContactForm = () => {
         className="w-full border border-brick border-b-0 p-2 focus:outline-none"
         required
       />
+      <input
+        type="email"
+        name="email"
+        placeholder="Your Mail"
+        className="w-full border border-brick border-b-0 p-2 focus:outline-none"
+        required
+      />
       {/* {errors.message && <p className="text-red-500">{errors.message}</p>} */}
       <div className="flex">
         <input
@@ -97,9 +106,10 @@ const ContactForm = () => {
         />
         {/* {errors.name && <p className="text-red-500">{errors.name}</p>} */}
         <input
-          type="email"
-          name="email"
-          placeholder="Your Mail"
+          type="tel"
+          name="phone"
+          placeholder="Your Phone Number"
+          maxLength={10}
           className="w-1/2 border border-brick p-2 focus:outline-none"
           required
         />

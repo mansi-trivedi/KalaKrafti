@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { email, message, name } = await req.json();
+    const { email, message, name, phone } = await req.json();
     const templatePath = path.join(
       process.cwd(),
       "/src/components/EmailTemplate",
@@ -17,7 +17,9 @@ export async function POST(req: Request) {
     let htmlTemplate = fs.readFileSync(templatePath, "utf8");
     // 2. Replace variables in template
     htmlTemplate = htmlTemplate.replace("{{name}}", name);
-    htmlTemplate = htmlTemplate.replace("{{text}}", message);
+    htmlTemplate = htmlTemplate.replace("{{message}}", message);
+    htmlTemplate = htmlTemplate.replace("{{email}}", email);
+    htmlTemplate = htmlTemplate.replace("{{phone}}", phone);
 
     const inlinedHtml = juice(htmlTemplate);
 

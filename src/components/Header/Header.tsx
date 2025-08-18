@@ -1,9 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
+// import Link from "next/link";
 import Navigation from "../Navigation/Navigation";
 import Icon from "../Icon/Icon";
 import Button from "../Button/Button";
+import Link from "next/link";
 
 const Header = () => {
   const [navigationModal, setNavigationModal] = useState(false);
@@ -32,16 +33,16 @@ const Header = () => {
     >
       <div className="container mx-auto max-w-none flex items-center flex-wrap justify-between gap-5">
         {/* Logo */}
-        <div className="text-lg font-bold text-brick cursor-pointer">
+        <Link href="/" className="text-lg font-bold text-brick cursor-pointer">
           Brand Logo
-        </div>
+        </Link>
 
         <div className="lg:block hidden xl:block 2xl:block 3xl:block">
           <Navigation />
         </div>
 
         <div className="flex space-x-4 text-brick">
-          <Link
+          {/* <Link
             href="/login"
             className="p-0.5 transition-transform duration-500 hover:rotate-y-180"
           >
@@ -60,7 +61,7 @@ const Header = () => {
             className="p-0.5 transition-transform duration-500 hover:rotate-y-180"
           >
             <Icon icon="cart" className="hover:fill-brick" />
-          </Link>
+          </Link> */}
 
           <Button type="button" onClick={handleNavigationModal}>
             <Icon
