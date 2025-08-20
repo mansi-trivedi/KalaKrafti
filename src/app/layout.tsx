@@ -3,7 +3,7 @@ import { quickSand, robFont, openSans } from "@/constants/fonts";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import Scrollup from "@/components/ScrollUp/ScrollUp";
+import ScrollUp from "@/components/ScrollUp/Scrollup";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
@@ -35,7 +35,7 @@ export default function RootLayout({
             },
           }}
         />
-        <Scrollup />
+        <ScrollUp />
         <Header />
         {children}
         <Footer />

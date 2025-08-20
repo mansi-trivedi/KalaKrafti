@@ -25,10 +25,10 @@ const Product: React.FC<ProductType> = (data) => {
         >
           view more
         </Link>
-        <Button className="absolute -top-2 -right-2 lg:-top-20 lg:-right-16">
-          <Icon icon="heart" className="hover:fill-brick" />
-        </Button>
       </div>
+      <Button className="absolute top-2 right-2 heart-icon hidden group-hover:flex">
+        <Icon icon="heart" className="hover:fill-brick" />
+      </Button>
     </div>
   );
 };
