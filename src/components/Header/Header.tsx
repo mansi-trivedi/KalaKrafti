@@ -5,8 +5,11 @@ import Navigation from "../Navigation/Navigation";
 import Icon from "../Icon/Icon";
 import Button from "../Button/Button";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
+  const pathname = usePathname();
+  console.log("pathname", pathname);
   const [navigationModal, setNavigationModal] = useState(false);
 
   useEffect(() => {
@@ -53,14 +56,24 @@ const Header = () => {
             href="/wishlist"
             className="p-0.5 transition-transform duration-500 hover:rotate-y-180"
           >
-            <Icon icon="heart" className="hover:fill-brick" />
+            <Icon
+              icon="heart"
+              className={`hover:fill-brick ${
+                pathname == "/wishlist" && "fill-brick"
+              }`}
+            />
           </Link>
 
           <Link
             href="/cart"
             className="p-0.5 transition-transform duration-500 hover:rotate-y-180"
           >
-            <Icon icon="cart" className="hover:fill-brick" />
+            <Icon
+              icon="cart"
+              className={`hover:fill-brick ${
+                pathname == "/cart" && "fill-brick"
+              }`}
+            />
           </Link>
 
           <Button type="button" onClick={handleNavigationModal}>

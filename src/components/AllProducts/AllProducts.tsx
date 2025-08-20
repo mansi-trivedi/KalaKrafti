@@ -142,30 +142,6 @@ const AllProduct = () => {
               key={index}
               className="group flex-shrink-0 border p-5 border-brick border-l-0 border-t-0"
             >
-              {/* <div className="flex flex-col items-center pb-6">
-                <div className="relative h-[140px] w-[140px] m-6">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="transition-all duration-500 absolute inset-0 flex justify-center items-center opacity-0 group-hover:opacity-100">
-                    <button className="text-white2 font-xl w-[75%] py-3 bg-gradient-to-br from-[#5C4033] via-[#A0522D] to-[#DEB887]">
-                      VIEW MORE
-                    </button>
-                  </div>
-                </div>
-                <h2 className="text-xl text-center font-semibold tracking-widest text-brick uppercase mt-3">
-                  {product.name}
-                </h2>
-                <p className="text-sm my-2 font-light text-center">
-                  {product.category}
-                </p>
-                <p className="text-brick font-semibold text-center">
-                  {product.price}
-                </p>
-              </div> */}
               <Product {...product} />
             </div>
           ))}

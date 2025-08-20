@@ -1,11 +1,9 @@
 import AllProduct from "@/components/AllProducts/AllProducts";
-import ScrollUp from "@/components/ScrollUp/ScrollUp";
 import React from "react";
 
 const page = () => {
   return (
     <>
-      <ScrollUp />
       <AllProduct />
     </>
   );

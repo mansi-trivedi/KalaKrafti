@@ -1,11 +1,9 @@
 import ProductDetails from "@/components/ProductDetails/ProductDetails";
-import ScrollUp from "@/components/ScrollUp/ScrollUp";
 import React from "react";
 
 const page = () => {
   return (
     <>
-      <ScrollUp />
       <ProductDetails />
     </>
   );
