@@ -1,32 +1,31 @@
+"use client";
 import React from "react";
 import ImageCarousel from "../ImageCarousel/ImageCarousel";
 import Button from "../Button/Button";
 import Quantity from "../Quantity/Quantity";
 import SocialMedia from "../SocialMedia/SocialMedia";
 import AdditionalInfo from "../AdditionalInfo/AdditionalInfo";
+import { useParams } from "next/navigation";
+import { products } from "@/constants/products";
 
 const ProductDetails = () => {
+  const { sku } = useParams<{ sku: string }>();
+  const selectedProduct = products.find((product) => product.sku === sku);
+
   return (
-    <div className="bg-white p-14">
-      <div className="flex flex-row">
-        <div className="w-full">
+    <div className="bg-white py-14 lg:p-14 xl:p-14 2xl:p-14">
+      <div className="flex flex-col lg:flex-row xl:flex-row 2xl:flex-row">
+        <div className="w-full lg:w-[60%] xl:w-[60%] 2xl:w-[60%]">
           <ImageCarousel />
         </div>
-        <div className="w-full px-10">
-          <h1 className="text-brick tracking-widest text-4xl font-semibold py-4">
-            ORGANIC RAW
+        <div className="w-full lg:w-[40%] xl:w-[40%] 2xl:w-[40%] p-8">
+          <h1 className="text-brick tracking-widest text-4xl font-bold py-4">
+            {selectedProduct?.name}
           </h1>
           <h4 className="text-brick tracking-wider text-xl font-semibold py-4 italic">
-            $11.09
+            {selectedProduct?.price}
           </h4>
-          <p className="font-light text-[16px]">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor se incididunt ut labore et dolore magna aliqua. Ut
-            enim ad minim veniam, quis nostruda exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat. Duis aute ire dolor in
-            reprehenderit in olupt ate velit esse cillum. dolore eu fugiat nulla
-            pariatur.
-          </p>
+          <p className="font-light text-[16px]">{selectedProduct?.category}</p>
           <div className="py-6 flex">
             <Quantity />
             <Button className="text-white2 font-xl w-[40%] mx-8 py-3 bg-gradient-to-br from-[#5C4033] via-[#A0522D] to-[#DEB887]">
@@ -42,7 +41,7 @@ const ProductDetails = () => {
               <h2 className="tracking-widest font-bold text-brick">
                 CATEGORY :{" "}
               </h2>
-              <p className="font-light mx-2">Organic Food</p>
+              <p className="font-light mx-2">{selectedProduct?.category}</p>
             </div>
             <div className="flex">
               <h2 className="tracking-widest font-bold text-brick">TAGS : </h2>
@@ -57,7 +56,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-      <div className="py-10">
+      <div className="px-4">
         <AdditionalInfo />
       </div>
     </div>

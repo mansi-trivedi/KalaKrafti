@@ -1,15 +1,28 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { products } from "@/constants/products";
 import Button from "../Button/Button";
 import Icon from "../Icon/Icon";
 
-const IMAGES_PER_PAGE = 5;
-
 export default function ImageCarousel() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [imagesStartIndex, setImagesStartIndex] = useState<number>(0);
+  const [imagesPerPage, setImagesPerPage] = useState<number>(0);
+
+  useEffect(() => {
+    const handleImages = () => {
+      if (window.innerWidth <= 576) {
+        setImagesPerPage(3);
+      } else {
+        setImagesPerPage(5);
+      }
+    };
+    handleImages();
+    window.addEventListener("resize", handleImages);
+
+    return () => window.removeEventListener("resize", handleImages);
+  }, []);
 
   const handlePrev = () => {
     if (selectedIndex > 0) {
@@ -27,7 +40,7 @@ export default function ImageCarousel() {
       const newIndex = selectedIndex + 1;
       setSelectedIndex(newIndex);
 
-      if (newIndex >= imagesStartIndex + IMAGES_PER_PAGE) {
+      if (newIndex >= imagesStartIndex + imagesPerPage) {
         setImagesStartIndex(imagesStartIndex + 1);
       }
     }
@@ -38,14 +51,14 @@ export default function ImageCarousel() {
 
     if (index < imagesStartIndex) {
       setImagesStartIndex(index);
-    } else if (index >= imagesStartIndex + IMAGES_PER_PAGE) {
-      setImagesStartIndex(index - IMAGES_PER_PAGE + 1);
+    } else if (index >= imagesStartIndex + imagesPerPage) {
+      setImagesStartIndex(index - imagesPerPage + 1);
     }
   };
 
   const visibleImages = products.slice(
     imagesStartIndex,
-    imagesStartIndex + IMAGES_PER_PAGE
+    imagesStartIndex + imagesPerPage
   );
 
   return (

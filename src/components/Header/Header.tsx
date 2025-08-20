@@ -42,7 +42,7 @@ const Header = () => {
         </div>
 
         <div className="flex space-x-4 text-brick">
-          {/* <Link
+          <Link
             href="/login"
             className="p-0.5 transition-transform duration-500 hover:rotate-y-180"
           >
@@ -61,7 +61,7 @@ const Header = () => {
             className="p-0.5 transition-transform duration-500 hover:rotate-y-180"
           >
             <Icon icon="cart" className="hover:fill-brick" />
-          </Link> */}
+          </Link>
 
           <Button type="button" onClick={handleNavigationModal}>
             <Icon

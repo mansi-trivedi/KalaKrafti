@@ -8,7 +8,7 @@ const AdditionalInfo = () => {
 
   return (
     <div className="w-full">
-      <div className="flex">
+      <div className="flex flex-col lg:flex-row xl:flex-row 2xl:flex-row">
         <button
           onClick={() => setActiveTab("description")}
           className={`px-6 py-2 text-sm tracking-widest border-b border-brick text-brick  ${

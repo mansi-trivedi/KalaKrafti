@@ -7,10 +7,10 @@ const menuItems = [
     href: "/products",
     label: "Products",
   },
-  // {
-  //   href: "/blog",
-  //   label: "Blog",
-  // },
+  {
+    href: "/blog",
+    label: "Blog",
+  },
   {
     href: "/contact-us",
     label: "Contact Us",
