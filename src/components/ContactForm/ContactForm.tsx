@@ -95,7 +95,6 @@ const ContactForm = () => {
         className="w-full border border-brick border-b-0 p-2 focus:outline-none"
         required
       />
-      {/* {errors.message && <p className="text-red-500">{errors.message}</p>} */}
       <div className="flex">
         <input
           type="text"
@@ -104,7 +103,6 @@ const ContactForm = () => {
           className="w-1/2 border border-brick border-r-0 p-2 focus:outline-none"
           required
         />
-        {/* {errors.name && <p className="text-red-500">{errors.name}</p>} */}
         <input
           type="tel"
           name="phone"
@@ -113,7 +111,6 @@ const ContactForm = () => {
           className="w-1/2 border border-brick p-2 focus:outline-none"
           required
         />
-        {/* {errors.email && <p className="text-red-500">{errors.email}</p>} */}
       </div>
 
       <Button

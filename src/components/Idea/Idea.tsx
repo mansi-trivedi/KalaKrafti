@@ -74,7 +74,6 @@ const Idea = () => {
 
         <div className="relative col-span-1 overflow-hidden group ">
           {" "}
-          {/* Approximate brown background */}
           <div className="p-4 py-6">
             <h4 className="text-brick text-lg font-semibold tracking-wider">
               CREATIVE SPIRIT

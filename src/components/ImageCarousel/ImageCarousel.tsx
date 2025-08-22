@@ -63,7 +63,6 @@ export default function ImageCarousel() {
 
   return (
     <div className="w-full max-w-4xl mx-auto p-4">
-      {/* Selected Image */}
       <div className="w-full h-[100vh] relative overflow-hidden border border-brick mb-4">
         <Image
           src={products[selectedIndex].image}

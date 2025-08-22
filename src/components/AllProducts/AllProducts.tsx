@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import Filter from "../Filter/Filter";
 import { products } from "@/constants/products";
-// import Image from "next/image";
 import Pagination from "../Pagination/Pagination";
 import CustomModal from "../Modal/Modal";
 import { PriceType } from "types/filter";

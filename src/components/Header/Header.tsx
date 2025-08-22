@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-// import Link from "next/link";
 import Navigation from "../Navigation/Navigation";
 import Icon from "../Icon/Icon";
 import Button from "../Button/Button";

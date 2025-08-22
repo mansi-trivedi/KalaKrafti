@@ -37,7 +37,6 @@ const Grid = () => {
 
         <div className="relative col-span-1 overflow-hidden min-h-[250px] group">
           {" "}
-          {/* Approximate brown background */}
           <Image
             src="https://krafti.qodeinteractive.com/wp-content/uploads/2019/06/portfolio-main-img-3.jpg"
             alt="Book mockup 'Creatively Fulfilled'"
@@ -54,7 +53,6 @@ const Grid = () => {
 
         <div className="relative col-span-1 overflow-hidden min-h-[250px] group">
           {" "}
-          {/* Approximate orange background */}
           <Image
             src="https://krafti.qodeinteractive.com/wp-content/uploads/2019/06/portfolio-main-img-4.jpg"
             alt="Cardboard box mockup 'Audrey'"
@@ -71,7 +69,6 @@ const Grid = () => {
 
         <div className="relative col-span-1 overflow-hidden min-h-[250px] group">
           {" "}
-          {/* Approximate reddish background */}
           <Image
             src="https://krafti.qodeinteractive.com/wp-content/uploads/2019/06/portfolio-main-img-5.jpg"
             alt="Large text 'YOU ARE HERE'"

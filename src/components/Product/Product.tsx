@@ -15,18 +15,17 @@ const Product: React.FC<ProductType> = (data) => {
         {data.name}
       </h2>
       <p className="text-sm my-2 text-center font-light">{data.category}</p>
-      <p className="text-brick text-center font-semibold mb-2">{data.price}</p>
+      <p className="text-brick text-center font-semibold mb-4">{data.price}</p>
       <div className="transition-all duration-500 lg:absolute lg:top-20 xl:absolute xl:top-20 2xl:absolute 2xl:top-20 opacity-100 lg:opacity-0 xl:opacity-0 2xl:opacity-0 lg:group-hover:opacity-100 xl:group-hover:opacity-100 2xl:group-hover:opacity-100">
-        <Button className="text-white2 font-xl p-3 bg-gradient-to-br from-[#5C4033] via-[#A0522D] to-[#DEB887]">
-          <Link
-            href={{
-              pathname: `/products/${data.sku}`,
-            }}
-          >
-            VIEW MORE
-          </Link>
-        </Button>
-        <Button className="absolute -top-2 -right-2 lg:-top-20 lg:-right-16">
+        <Link
+          className="text-white2 uppercase font-xl p-3 bg-gradient-to-br from-[#5C4033] via-[#A0522D] to-[#DEB887]"
+          href={{
+            pathname: `/products/${data.sku}`,
+          }}
+        >
+          view more
+        </Link>
+        <Button className="absolute -top-2 lg:-top-20 lg:-right-16">
           <Icon icon="heart" className="hover:fill-brick" />
         </Button>
       </div>
