@@ -44,7 +44,7 @@ const Header = () => {
 
         <div className="flex space-x-4 text-brick">
           <Link
-            href="/login"
+            href="/register"
             className="p-0.5 transition-transform duration-500 hover:rotate-y-180"
           >
             <Icon icon="user" className="hover:fill-brick" />
