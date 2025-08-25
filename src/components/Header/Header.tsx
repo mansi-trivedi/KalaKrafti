@@ -8,7 +8,6 @@ import { usePathname } from "next/navigation";
 
 const Header = () => {
   const pathname = usePathname();
-  console.log("pathname", pathname);
   const [navigationModal, setNavigationModal] = useState(false);
 
   useEffect(() => {
