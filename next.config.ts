@@ -17,6 +17,13 @@ const config: NextConfig = {
         pathname: "/wp-content/uploads/2019/**",
         search: "",
       },
+      {
+        protocol: "https",
+        hostname: "**.supabase.co",
+        port: "",
+        pathname: "/storage/v1/**",
+        search: "",
+      },
     ],
   },
   reactStrictMode: true,

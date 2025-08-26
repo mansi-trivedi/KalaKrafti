@@ -1,20 +1,49 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Filter from "../Filter/Filter";
-import { products } from "@/constants/products";
+// import { products } from "@/constants/products";
 import Pagination from "../Pagination/Pagination";
 import CustomModal from "../Modal/Modal";
 import { PriceType } from "types/filter";
 import Icon from "../Icon/Icon";
 import Product from "../Product/Product";
+import { ProductAPIProps } from "types/product";
+import { getAllProduct } from "@/app/data/product";
+import { toast } from "sonner";
 
 const PRODUCTS_PER_PAGE = 6;
 
 const AllProduct = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [currentProducts, setCurrentProducts] = useState<
+    Array<ProductAPIProps["product"]>
+  >([]);
+  const [totalProducts, setTotalProducts] = useState(0);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [price, setPrice] = useState<PriceType>(null);
   const [filterModal, setFilterModal] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const [response] = await getAllProduct(PRODUCTS_PER_PAGE, 1);
+      const { data } = response ?? {};
+      console.log("data", data.products);
+      setTotalProducts(data.totalProducts);
+      setCurrentPage(data.currentPage);
+      setCurrentProducts(data.products);
+    };
+    fetchData();
+  }, []);
+
+  const handlePageChange = async (pageNumber: number) => {
+    const [response, err] = await getAllProduct(PRODUCTS_PER_PAGE, pageNumber);
+    setCurrentProducts(response?.data?.products ?? []);
+    if (err) {
+      toast.error("Not able to fetch products");
+      return;
+    }
+    setCurrentPage(pageNumber);
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -31,34 +60,23 @@ const AllProduct = () => {
     setCurrentPage(1);
   }, [selectedCategories, price]);
 
-  const filteredProducts = products.filter((product) => {
-    const categoryMatch =
-      selectedCategories.length === 0 ||
-      selectedCategories.includes(product.category);
+  // const filteredProducts = products.filter(
+  //   (product: { category: string; price: string }) => {
+  //     const categoryMatch =
+  //       selectedCategories.length === 0 ||
+  //       selectedCategories.includes(product.category);
 
-    const numericPrice = parseInt(product.price.replace(/[^0-9]/g, ""), 10);
+  //     const numericPrice = parseInt(product.price.replace(/[^0-9]/g, ""), 10);
 
-    const priceMatch =
-      !price ||
-      (price.value.length === 1
-        ? numericPrice >= price.value[0]
-        : numericPrice >= price.value[0] && numericPrice <= price.value[1]);
+  //     const priceMatch =
+  //       !price ||
+  //       (price.value.length === 1
+  //         ? numericPrice >= price.value[0]
+  //         : numericPrice >= price.value[0] && numericPrice <= price.value[1]);
 
-    return categoryMatch && priceMatch;
-  });
-
-  const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
-  const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
-  const paginatedProducts = filteredProducts.slice(
-    startIndex,
-    startIndex + PRODUCTS_PER_PAGE
-  );
-
-  const handlePageChange = (page: number) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-    }
-  };
+  //     return categoryMatch && priceMatch;
+  //   }
+  // );
 
   const removePrice = () => setPrice(null);
   const removeCategory = (category: string) =>
@@ -136,20 +154,21 @@ const AllProduct = () => {
         </div>
 
         <div className="grid lg:grid-cols-3 grid-cols-2 border border-brick border-r-0 border-b-0">
-          {paginatedProducts.map((product, index) => (
+          {currentProducts.map((product, index) => (
             <div
               key={index}
               className="group flex-shrink-0 border p-5 border-brick border-l-0 border-t-0"
             >
-              <Product {...product} />
+              <Product product={product} />
             </div>
           ))}
         </div>
 
         <Pagination
-          handlePageChange={handlePageChange}
-          totalPages={totalPages}
-          currentPage={currentPage}
+          onPageClick={handlePageChange}
+          itemsPerPage={PRODUCTS_PER_PAGE}
+          totalItems={totalProducts as number}
+          currentPage={currentPage as number}
         />
       </div>
     </div>

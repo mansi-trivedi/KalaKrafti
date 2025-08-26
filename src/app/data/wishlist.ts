@@ -1,0 +1,44 @@
+import axios, { AxiosError, AxiosRequestConfig } from "axios";
+import { BASE_URL } from "@/constants/api";
+import { APIResponse } from "types/api";
+import { ProductAPIProps } from "types/product";
+import { ServerResponseType } from "types/global";
+import { resolvePromise } from "../utils/apiUtils";
+
+const addToWishlist = async (
+  productId: string
+): Promise<[ServerResponseType<"">, AxiosError]> => {
+  const requestConfig: AxiosRequestConfig = {
+    url: `${BASE_URL}/api/wishlist`,
+    method: "POST",
+    data: JSON.stringify({
+      productId,
+    }),
+  };
+  const [response, error] = await resolvePromise(axios.request(requestConfig));
+  return [response?.data, error];
+};
+
+const getWishList = async (): Promise<
+  [APIResponse<Array<ProductAPIProps["product"]>> | undefined, AxiosError]
+> => {
+  const requestConfig: AxiosRequestConfig = {
+    url: `${BASE_URL}/api/wishlist`,
+    method: "get",
+  };
+  const [response, error] = await resolvePromise(axios.request(requestConfig));
+  return [response?.data, error];
+};
+
+const removeItemFromWishList = async (
+  productId: string
+): Promise<[ServerResponseType<"">, AxiosError]> => {
+  const requestConfig: AxiosRequestConfig = {
+    url: `${BASE_URL}/api/wishlist?product_id=${productId}`,
+    method: "delete",
+  };
+  const [response, error] = await resolvePromise(axios.request(requestConfig));
+  return [response?.data, error];
+};
+
+export { addToWishlist, getWishList, removeItemFromWishList };

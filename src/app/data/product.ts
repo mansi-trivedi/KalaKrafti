@@ -20,7 +20,7 @@ const getProductsByCategory = async (
 
 /** Gets all products with pagination */
 const getAllProduct = async (
-  pageSize: number = 10,
+  pageSize: number = 9,
   pageNumber: number = 1
 ): Promise<
   [ProductAPIProps["getAllProductApiResponse"] | undefined, AxiosError]

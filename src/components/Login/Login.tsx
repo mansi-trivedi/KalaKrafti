@@ -6,6 +6,7 @@ import { performLoginOperation } from "@/app/data/user";
 import { toast } from "sonner";
 import { BeatLoader } from "react-spinners";
 import Button from "../Button/Button";
+import { useUserContext } from "@/app/contexts/UserContext";
 
 type LoginErrorProps = {
   email?: string;
@@ -13,7 +14,7 @@ type LoginErrorProps = {
 };
 
 const Login: FC = () => {
-  //   const { handleUserLoggedInState } = useUserContext();
+  const { handleUserLoggedInState } = useUserContext();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<LoginErrorProps>({});
   const formRef = useRef<HTMLFormElement>(null);
@@ -68,7 +69,7 @@ const Login: FC = () => {
         }
         setIsLoading(false);
         if (response?.success) {
-          //   handleUserLoggedInState(true);
+          handleUserLoggedInState(true);
           toast.success("User successfully logged in", {
             duration: 1000,
           });
@@ -76,7 +77,7 @@ const Login: FC = () => {
         }
       }
     },
-    [validateForm]
+    [handleUserLoggedInState, validateForm]
   );
 
   return (

@@ -1,14 +1,20 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Navigation from "../Navigation/Navigation";
 import Icon from "../Icon/Icon";
 import Button from "../Button/Button";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useUserContext } from "@/app/contexts/UserContext";
+import { toast } from "sonner";
+import { performUserLogout } from "@/app/data/user";
 
 const Header = () => {
   const pathname = usePathname();
+  const { isLoggedIn, handleUserLoggedInState } = useUserContext();
   const [navigationModal, setNavigationModal] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const router = useRouter();
 
   useEffect(() => {
     const handleResize = () => {
@@ -20,6 +26,23 @@ const Header = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleUserLogout = useCallback(async () => {
+    const [response, error] = await performUserLogout();
+    if (error) {
+      toast.error("Something went wrong, Please try again later");
+      return;
+    }
+    if (response?.success) {
+      handleUserLoggedInState(false);
+      toast.success("Successfully logout");
+      router.push("/");
+    }
+  }, [handleUserLoggedInState, router]);
 
   const handleNavigationModal = () => {
     setNavigationModal((prev) => !prev);
@@ -43,13 +66,46 @@ const Header = () => {
         </div>
 
         <div className="flex space-x-4 text-brick">
-          <Link
+          {/* <Link
             href="/register"
             className="p-0.5 transition-transform duration-500 hover:rotate-y-180"
           >
             <Icon icon="user" className="hover:fill-brick" />
-          </Link>
-
+          </Link> */}
+          {isLoggedIn ? (
+            <div className="relative">
+              <button
+                type="button"
+                onClick={toggleDropdown}
+                className="p-0.5 transition-transform duration-500 hover:rotate-y-180"
+              >
+                <Icon icon="user" className="fill-brick" />
+              </button>
+              {isDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 shadow-md rounded-md z-10">
+                  <Link
+                    href={"/orders"}
+                    className="block w-full text-left px-4 py-2 text-sm text-blackShade hover:bg-gray-100 focus:outline-none focus:bg-gray-100 active:bg-gray-200 rounded-t-md rounded-b-md"
+                  >
+                    Orders
+                  </Link>
+                  <button
+                    onClick={handleUserLogout}
+                    className="block w-full text-left px-4 py-2 text-sm text-blackShade hover:bg-gray-100 focus:outline-none focus:bg-gray-100 active:bg-gray-200 rounded-t-md rounded-b-md"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link
+              href="/login"
+              className="p-0.5 transition-transform duration-500 hover:rotate-y-180"
+            >
+              <Icon icon="user" className="hover:fill-brick" />
+            </Link>
+          )}
           <Link
             href="/wishlist"
             className="p-0.5 transition-transform duration-500 hover:rotate-y-180"
@@ -61,7 +117,6 @@ const Header = () => {
               }`}
             />
           </Link>
-
           <Link
             href="/cart"
             className="p-0.5 transition-transform duration-500 hover:rotate-y-180"
@@ -73,7 +128,6 @@ const Header = () => {
               }`}
             />
           </Link>
-
           <Button type="button" onClick={handleNavigationModal}>
             <Icon
               icon="menu"

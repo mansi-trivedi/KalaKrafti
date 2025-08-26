@@ -1,6 +1,6 @@
 import { APIResponse } from "types/api";
 
-type Product = {
+type ProductType = {
   productId: string;
   SKU: string;
   description: string;
@@ -14,17 +14,17 @@ type Product = {
 } | null;
 
 type ProductAPIProps = {
-  product: Product | null;
+  product: ProductType | null;
   getCollectionResponse: APIResponse<ProductAPIResponse | null> | undefined;
-  getProductWithSkuOrIdResponse: APIResponse<Product | null>;
+  getProductWithSkuOrIdResponse: APIResponse<ProductType | null>;
   getAllProductApiResponse: APIResponse<{
-    products: Product[];
+    products: ProductType[];
     totalProducts: number;
     currentPage: number;
   }>;
   getProductCategoryApiResponse: APIResponse<{
-    products: Array<Product>;
+    products: Array<ProductType>;
   }>;
 };
 
-export type { ProductAPIProps, Product };
+export type { ProductAPIProps, ProductType };

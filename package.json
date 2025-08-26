@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "@svgr/webpack": "^5.5.0",
+    "axios": "^1.11.0",
+    "bcrypt": "^6.0.0",
+    "jose": "^6.0.13",
     "juice": "^11.0.1",
+    "mysql2": "^3.14.3",
     "next": "15.3.2",
     "nodemailer": "^6.10.0",
     "postcss": "^8.5.3",

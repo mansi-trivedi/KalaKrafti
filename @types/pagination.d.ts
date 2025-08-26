@@ -1,7 +1,8 @@
 type PaginationType = {
-  handlePageChange: (item: number) => void;
-  totalPages: number;
+  onPageClick: (pageNumber: number) => void;
   currentPage: number;
+  itemsPerPage: number;
+  totalItems: number;
 };
 
 export type { PaginationType };
