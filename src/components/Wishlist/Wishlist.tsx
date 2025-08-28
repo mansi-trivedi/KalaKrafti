@@ -5,15 +5,18 @@ import { ProductAPIProps } from "types/product";
 import { useProductContext } from "@/app/contexts/ProductContext";
 import { getWishList } from "@/app/data/wishlist";
 import { toast } from "sonner";
+import { BeatLoader } from "react-spinners";
 
 const Wishlist = () => {
   const [products, setProducts] = useState<Array<ProductAPIProps["product"]>>(
     []
   );
+  const [isLoading, setIsLoading] = useState(false);
   const { addProductToWishList, wishListProductsSkuIds } = useProductContext();
 
   useEffect(() => {
     async function fetchData() {
+      setIsLoading(false);
       const [response] = await getWishList();
       if (!response?.success) {
         toast.error(
@@ -25,11 +28,18 @@ const Wishlist = () => {
         addProductToWishList(product?.SKU ?? "")
       );
       setProducts(response?.data ?? []);
+      setIsLoading(false);
     }
     fetchData();
   }, [addProductToWishList]);
 
-  console.log("wishListProductsSkuIds", wishListProductsSkuIds);
+  if (isLoading) {
+    return (
+      <div className="flex h-[50vh] justify-center items-center">
+        <BeatLoader color="#a55e3f" loading={isLoading} size={28} />
+      </div>
+    );
+  }
   return (
     <div className="py-14 px-8 bg-white">
       <h1 className="text-brick text-3xl font-semibold tracking-widest pb-4">
@@ -42,7 +52,12 @@ const Wishlist = () => {
               key={index}
               className="group flex-shrink-0 border p-5 border-brick"
             >
-              <Product product={product} />
+              <Product
+                product={product}
+                isItemInWishList={wishListProductsSkuIds.has(
+                  product?.SKU ?? ""
+                )}
+              />
             </div>
           ))}
         </div>

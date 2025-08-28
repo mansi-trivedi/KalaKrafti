@@ -1,11 +1,15 @@
 "use client";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { products } from "@/constants/products";
 import Button from "../Button/Button";
 import Icon from "../Icon/Icon";
 
-export default function ImageCarousel() {
+type ImageCarouselProps = {
+  images: Array<string>;
+};
+
+const ImageCarousel: FC<ImageCarouselProps> = ({ images }) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [imagesStartIndex, setImagesStartIndex] = useState<number>(0);
   const [imagesPerPage, setImagesPerPage] = useState<number>(0);
@@ -36,7 +40,7 @@ export default function ImageCarousel() {
   };
 
   const handleNext = () => {
-    if (selectedIndex < products.length - 1) {
+    if (selectedIndex < images.length - 1) {
       const newIndex = selectedIndex + 1;
       setSelectedIndex(newIndex);
 
@@ -56,7 +60,7 @@ export default function ImageCarousel() {
     }
   };
 
-  const visibleImages = products.slice(
+  const visibleImages = images.slice(
     imagesStartIndex,
     imagesStartIndex + imagesPerPage
   );
@@ -64,15 +68,16 @@ export default function ImageCarousel() {
   return (
     <div className="w-full max-w-4xl mx-auto p-4">
       <div className="w-full h-[100vh] relative overflow-hidden border border-brick mb-4">
-        <Image
-          src={products[selectedIndex].image}
-          alt={`Image ${selectedIndex + 1}`}
-          fill
-          className="object-cover"
-          priority
-        />
+        {images && (
+          <Image
+            src={images[selectedIndex]}
+            alt={`Image ${selectedIndex + 1}`}
+            fill
+            className="object-cover"
+            priority
+          />
+        )}
       </div>
-
       <div className="flex justify-center items-center mb-6">
         <Button
           onClick={handlePrev}
@@ -81,8 +86,8 @@ export default function ImageCarousel() {
         >
           <Icon icon="leftArrow" />
         </Button>
-        <div className="flex justify-center flex-wrap mx-1">
-          {visibleImages.map((product, index) => {
+        <div className="flex justify-center flex-wrap mx-1 space-x-1">
+          {visibleImages.map((image, index) => {
             const realIndex = imagesStartIndex + index;
             return (
               <div
@@ -95,7 +100,7 @@ export default function ImageCarousel() {
                 } hover:border-brick`}
               >
                 <Image
-                  src={product.image}
+                  src={image}
                   alt={`Images ${realIndex + 1}`}
                   fill
                   className="object-cover"
@@ -114,4 +119,6 @@ export default function ImageCarousel() {
       </div>
     </div>
   );
-}
+};
+
+export default ImageCarousel;

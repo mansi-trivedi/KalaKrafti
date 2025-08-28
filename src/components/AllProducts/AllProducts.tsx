@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Filter from "../Filter/Filter";
-// import { products } from "@/constants/products";
+import { BeatLoader } from "react-spinners";
 import Pagination from "../Pagination/Pagination";
 import CustomModal from "../Modal/Modal";
 import { PriceType } from "types/filter";
@@ -15,7 +15,7 @@ import { useProductContext } from "@/app/contexts/ProductContext";
 const PRODUCTS_PER_PAGE = 6;
 
 const AllProduct = () => {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [currentProducts, setCurrentProducts] = useState<
     Array<ProductAPIProps["product"]>
   >([]);
@@ -24,14 +24,16 @@ const AllProduct = () => {
   const [price, setPrice] = useState<PriceType>(null);
   const [filterModal, setFilterModal] = useState(false);
   const { wishListProductsSkuIds } = useProductContext();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       const [response] = await getAllProduct(PRODUCTS_PER_PAGE, 1);
-      const { data } = response ?? {};
-      setTotalProducts(data.totalProducts);
-      setCurrentPage(data.currentPage);
-      setCurrentProducts(data.products);
+      setTotalProducts(response?.data?.totalProducts ?? 0);
+      setCurrentPage(response?.data?.currentPage ?? 1);
+      setCurrentProducts(response?.data?.products ?? []);
+      setIsLoading(false);
     };
     fetchData();
   }, []);
@@ -60,6 +62,14 @@ const AllProduct = () => {
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedCategories, price]);
+
+  if (isLoading) {
+    return (
+      <div className="flex h-[50vh] justify-center items-center">
+        <BeatLoader color="#a55e3f" loading={isLoading} size={28} />
+      </div>
+    );
+  }
 
   // const filteredProducts = products.filter(
   //   (product: { category: string; price: string }) => {

@@ -19,8 +19,8 @@ import {
   addToCart as addItemToCart,
 } from "@/app/data/cart";
 import { CartAPIProps } from "types/cart";
-import { useRouter } from "next/router";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 type CartProviderPropTypes = {
   children: ReactNode;

@@ -8,6 +8,8 @@ import { Toaster } from "sonner";
 import { UserProvider } from "./contexts/UserContext";
 import { getUserFromToken } from "./libs/auth";
 import { getAuthToken } from "./utils/getAuthToken";
+import { CartProvider } from "./contexts/CartContext";
+import { ProductProvider } from "./contexts/ProductContext";
 
 export const metadata: Metadata = {
   title: "Kala Krafti",
@@ -38,21 +40,25 @@ export default async function RootLayout({
             isAuthenticated: isAuthenticated,
           }}
         >
-          <Toaster
-            position="bottom-right"
-            toastOptions={{
-              style: {
-                color: "#a55e3f",
-                background: "#f8f8f8",
-                fontSize: "14px",
-                fontStyle: "italic",
-              },
-            }}
-          />
-          <ScrollUp />
-          <Header />
-          {children}
-          <Footer />{" "}
+          <CartProvider>
+            <ProductProvider>
+              <Toaster
+                position="bottom-right"
+                toastOptions={{
+                  style: {
+                    color: "#a55e3f",
+                    background: "#f8f8f8",
+                    fontSize: "14px",
+                    fontStyle: "italic",
+                  },
+                }}
+              />
+              <ScrollUp />
+              <Header />
+              {children}
+              <Footer />{" "}
+            </ProductProvider>
+          </CartProvider>
         </UserProvider>
       </body>
     </html>

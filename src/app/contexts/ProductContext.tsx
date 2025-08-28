@@ -12,7 +12,6 @@ import {
 } from "react";
 import { getWishList } from "@/app/data/wishlist";
 import { ProductAPIProps } from "types/product";
-import { useRouter } from "next/router";
 import { useUserContext } from "./UserContext";
 
 type ProductProviderPropTypes = {
@@ -28,8 +27,6 @@ type ProductContextType = {
   RemoveProductFromWishList: (productSkuId: string) => void;
   products: Products;
   setProducts: (products: Products) => void;
-  setSearchedTerm: (searchTerm: string) => void;
-  searchedTerm: string;
 };
 
 const DEFAULT_VALUE: ProductContextType = {
@@ -39,14 +36,11 @@ const DEFAULT_VALUE: ProductContextType = {
   RemoveProductFromWishList: () => null,
   products: [],
   setProducts: () => null,
-  setSearchedTerm: () => null,
-  searchedTerm: "",
 };
 
 const ProductContext = createContext(DEFAULT_VALUE);
 
 const ProductProvider: FC<ProductProviderPropTypes> = ({ children }) => {
-  const router = useRouter();
   const { isLoggedIn } = useUserContext();
   const [wishListProductsSkuIds, setWishListProductsSkuIds] = useState<
     ProductContextType["wishListProductsSkuIds"]
@@ -54,9 +48,6 @@ const ProductProvider: FC<ProductProviderPropTypes> = ({ children }) => {
   const [products, setProducts] = useState<ProductContextType["products"]>(
     DEFAULT_VALUE.products
   );
-  const [searchedTerm, setSearchedTerm] = useState<
-    ProductContextType["searchedTerm"]
-  >(router.query?.search_term as string);
 
   /** Handlers */
 
@@ -121,8 +112,6 @@ const ProductProvider: FC<ProductProviderPropTypes> = ({ children }) => {
       RemoveProductFromWishList,
       products,
       setProducts: (products) => setProducts(products),
-      setSearchedTerm: (searchTerm) => setSearchedTerm(searchTerm),
-      searchedTerm,
     }),
     [
       wishListProductsSkuIds,
@@ -130,7 +119,6 @@ const ProductProvider: FC<ProductProviderPropTypes> = ({ children }) => {
       addProductToWishList,
       RemoveProductFromWishList,
       products,
-      searchedTerm,
     ]
   );
 

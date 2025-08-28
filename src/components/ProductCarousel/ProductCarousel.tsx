@@ -1,9 +1,12 @@
 "use client";
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
-import { products } from "@/constants/products";
 import Icon from "../Icon/Icon";
 import Button from "../Button/Button";
 import Product from "../Product/Product";
+import { ProductAPIProps } from "types/product";
+import { getAllProduct } from "@/app/data/product";
+import { BeatLoader } from "react-spinners";
+import { useProductContext } from "@/app/contexts/ProductContext";
 
 export const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -37,6 +40,22 @@ export default function ProductCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [windowWidth, setWindowWidth] = useState(0);
   const [slidesPerView, setSlidesPerView] = useState<number>(carouselConfig.xs);
+  const [products, setProducts] = useState<Array<ProductAPIProps["product"]>>(
+    []
+  );
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { wishListProductsSkuIds } = useProductContext();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      const [response] = await getAllProduct(13, 1);
+      setProducts(response?.data?.products ?? []);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
 
   useIsomorphicLayoutEffect(() => {
     function handleResize() {
@@ -52,11 +71,11 @@ export default function ProductCarousel() {
 
   const handlePrev = useCallback(() => {
     setCurrentIndex((curr) => (curr === 0 ? products.length - 1 : curr - 1));
-  }, []);
+  }, [products.length]);
 
   const handleNext = useCallback(() => {
     setCurrentIndex((curr) => (curr === products.length - 1 ? 0 : curr + 1));
-  }, []);
+  }, [products.length]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -69,9 +88,17 @@ export default function ProductCarousel() {
   const slideWidth = windowWidth ? windowWidth / slidesPerView : 0;
   const maxIndex = Math.max(0, products.length - slidesPerView);
 
+  if (isLoading) {
+    return (
+      <div className="flex h-[50vh] justify-center items-center">
+        <BeatLoader color="#a55e3f" loading={isLoading} size={28} />
+      </div>
+    );
+  }
+
   return (
-    <div className="relative w-full overflow-hidden">
-      <style jsx>{`
+    <div className="relative w-full overflow-hidden my-8">
+      <style>{`
         .slidesContainer {
           transform: translateX(calc(-${currentIndex} * ${slideWidth}px));
           will-change: transform;
@@ -99,7 +126,12 @@ export default function ProductCarousel() {
         <div className="flex transition-transform duration-500 ease-in-out slidesContainer">
           {products.map((product, index) => (
             <div key={index} className={`group flex-shrink-0 py-4 slide`}>
-              <Product {...product} />
+              <Product
+                product={product}
+                isItemInWishList={wishListProductsSkuIds.has(
+                  product?.SKU ?? ""
+                )}
+              />
             </div>
           ))}
         </div>
