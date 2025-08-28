@@ -10,6 +10,7 @@ import Product from "../Product/Product";
 import { ProductAPIProps } from "types/product";
 import { getAllProduct } from "@/app/data/product";
 import { toast } from "sonner";
+import { useProductContext } from "@/app/contexts/ProductContext";
 
 const PRODUCTS_PER_PAGE = 6;
 
@@ -22,12 +23,12 @@ const AllProduct = () => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [price, setPrice] = useState<PriceType>(null);
   const [filterModal, setFilterModal] = useState(false);
+  const { wishListProductsSkuIds } = useProductContext();
 
   useEffect(() => {
     const fetchData = async () => {
       const [response] = await getAllProduct(PRODUCTS_PER_PAGE, 1);
       const { data } = response ?? {};
-      console.log("data", data.products);
       setTotalProducts(data.totalProducts);
       setCurrentPage(data.currentPage);
       setCurrentProducts(data.products);
@@ -153,13 +154,18 @@ const AllProduct = () => {
           )}
         </div>
 
-        <div className="grid lg:grid-cols-3 grid-cols-2 border border-brick border-r-0 border-b-0">
+        <div className="grid lg:grid-cols-3 grid-cols-2 border border-brick">
           {currentProducts.map((product, index) => (
             <div
               key={index}
-              className="group flex-shrink-0 border p-5 border-brick border-l-0 border-t-0"
+              className="group flex-shrink-0 border p-5 border-brick"
             >
-              <Product product={product} />
+              <Product
+                product={product}
+                isItemInWishList={wishListProductsSkuIds.has(
+                  product?.SKU ?? ""
+                )}
+              />
             </div>
           ))}
         </div>

@@ -1,6 +1,22 @@
-import React from "react";
+import { useCartContext } from "@/app/contexts/CartContext";
+import { getCart } from "@/app/data/cart";
+import React, { useEffect } from "react";
 
 const CartTotal = () => {
+  const { cart, setCart } = useCartContext();
+  const { total } = cart ?? {};
+
+  useEffect(() => {
+    (async () => {
+      const [cartResp, cartErr] = await getCart();
+      if (cartErr) {
+        return;
+      }
+      if (cartResp?.success) {
+        setCart(cartResp?.data ?? null);
+      }
+    })();
+  }, [setCart]);
   return (
     <div className="relative py-2">
       <table className="w-full border-collapse bg-white2">
@@ -10,7 +26,7 @@ const CartTotal = () => {
               Subtotal
             </td>
             <td className="py-2 px-4 text-lg font-medium tracking-wider text-right">
-              Rs. 1000
+              Rs. {total}
             </td>
           </tr>
 
@@ -28,7 +44,7 @@ const CartTotal = () => {
           <tr>
             <td className="py-2 px-4 text-lg font-medium  text-brick">Total</td>
             <td className="py-2 px-4 text-2xl font-semibold text-brick text-right">
-              Rs. {100 + 8.0}
+              Rs. {+(total ?? 0) + 8.0}
             </td>
           </tr>
         </tbody>

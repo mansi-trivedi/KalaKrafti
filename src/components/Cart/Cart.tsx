@@ -1,20 +1,36 @@
-import { products } from "@/constants/products";
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import CartItem from "./CartItem";
 import CartTotal from "./CartTotal";
 import Button from "../Button/Button";
+import { getCartItems } from "@/app/data/cart";
+import { useCartContext } from "@/app/contexts/CartContext";
 
 const Cart = () => {
+  const { cartItems, setCartItemsHandler } = useCartContext();
+
+  useEffect(() => {
+    (async () => {
+      const [cartResp, cartErr] = await getCartItems();
+      if (cartErr) {
+        return;
+      }
+      if (cartResp?.success) {
+        setCartItemsHandler(cartResp?.data ?? []);
+      }
+    })();
+  }, [setCartItemsHandler]);
+
   return (
     <div className="py-14 px-8 bg-white">
       <h1 className="text-brick text-3xl font-semibold tracking-widest pb-4">
         CART
       </h1>
-      {products?.length ? (
+      {cartItems?.length ? (
         <div className="grid lg:grid-cols-[calc(70%-1rem)_calc(30%-1rem)] relative min-h-screen w-full max-w-full gap-5">
           <div className="cart-items-container flex flex-col gap-3">
-            {products.map((product, index) => {
-              return <CartItem key={index} product={product} />;
+            {cartItems.map((cartItem, index) => {
+              return <CartItem key={index} cartItem={cartItem} />;
             })}
           </div>
           <div className="cart-summary-container sticky top-8 self-start w-full">
@@ -27,7 +43,7 @@ const Cart = () => {
           </div>
         </div>
       ) : (
-        <div className="text-xl text-darkBlue text-center my-20 font-semibold">
+        <div className="text-xl flex h-[30vh] justify-center items-center text-brick  font-semibold tracking-wider">
           Empty Cart
         </div>
       )}

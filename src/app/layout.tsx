@@ -6,8 +6,8 @@ import Footer from "@/components/Footer/Footer";
 import ScrollUp from "@/components/ScrollUp/ScrollUp";
 import { Toaster } from "sonner";
 import { UserProvider } from "./contexts/UserContext";
-import { cookies } from "next/headers";
 import { getUserFromToken } from "./libs/auth";
+import { getAuthToken } from "./utils/getAuthToken";
 
 export const metadata: Metadata = {
   title: "Kala Krafti",
@@ -23,9 +23,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   let isAuthenticated = false;
-  const cookieStore = await cookies();
-  const authToken = cookieStore.get("authToken");
-  const user = await getUserFromToken(authToken?.value || "");
+  const token = await getAuthToken();
+  const user = await getUserFromToken(token);
   if (user) {
     isAuthenticated = true;
   }

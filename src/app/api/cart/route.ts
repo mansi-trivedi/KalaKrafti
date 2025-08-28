@@ -1,0 +1,81 @@
+import { executeQuery } from "@/app/libs/mysql";
+import { decodeAndGetUserInfo } from "@/app/utils/getAuthToken";
+import serverResponse from "@/app/utils/nextServerResponse";
+import { NextResponse } from "next/server";
+import { CartAPIProps } from "types/cart";
+
+export const revalidate = 0;
+
+export async function GET(): Promise<
+  NextResponse<CartAPIProps["getCartItemsResponse"]>
+> {
+  const payload = (await decodeAndGetUserInfo()) ?? {};
+  try {
+    const rows = await executeQuery("call GetCartItems(?)", [payload?.userId]);
+    const cartItems = rows[0] as Array<CartAPIProps["cartItem"]>;
+    return serverResponse({
+      data: cartItems,
+      status: 200,
+      success: true,
+      message: "Cart items fetched successfully",
+    });
+  } catch (error) {
+    return serverResponse({
+      success: false,
+      message: "Internal Server Error",
+      error: error instanceof Error ? error.message : undefined,
+      status: 500,
+    });
+  }
+}
+
+export async function POST(
+  request: Request
+): Promise<NextResponse<CartAPIProps["addCartItemResponse"]>> {
+  try {
+    const payload = (await decodeAndGetUserInfo()) ?? {};
+    const requestBody = await request.json();
+    const { productId, quantity } = requestBody ?? {};
+    await executeQuery("call AddToCart(?, ?, ?)", [
+      payload.userId,
+      productId,
+      quantity,
+    ]);
+    return serverResponse({
+      success: true,
+      message: "Product added successfully into cart",
+    });
+  } catch (error) {
+    return serverResponse({
+      success: false,
+      message: "Internal Server Error",
+      error: error instanceof Error ? error.message : undefined,
+      status: 500,
+    });
+  }
+}
+
+export async function DELETE(
+  request: Request
+): Promise<NextResponse<CartAPIProps["deleteCartItemResponse"]>> {
+  try {
+    const payload = (await decodeAndGetUserInfo()) ?? {};
+    const { searchParams } = new URL(request.url);
+    const cartItemId = searchParams.get("cart_item_id");
+    await executeQuery("call RemoveCartItem(?, ?)", [
+      cartItemId,
+      payload.userId,
+    ]);
+    return serverResponse({
+      success: true,
+      message: "Product removed successfully from your cart",
+    });
+  } catch (error) {
+    return serverResponse({
+      success: false,
+      message: "Internal Server Error",
+      error: error instanceof Error ? error.message : undefined,
+      status: 500,
+    });
+  }
+}
