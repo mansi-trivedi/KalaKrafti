@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { quickSand, robFont, openSans } from "@/constants/fonts";
 import "./globals.css";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
 import ScrollUp from "@/components/ScrollUp/ScrollUp";
 import { Toaster } from "sonner";
 import { UserProvider } from "./contexts/UserContext";
@@ -42,21 +40,9 @@ export default async function RootLayout({
         >
           <CartProvider>
             <ProductProvider>
-              <Toaster
-                position="bottom-right"
-                // toastOptions={{
-                //   style: {
-                //     color: "#a55e3f",
-                //     background: "#f8f8f8",
-                //     fontSize: "14px",
-                //     fontStyle: "italic",
-                //   },
-                // }}
-              />
+              <Toaster position="bottom-right" />
               <ScrollUp />
-              <Header />
               {children}
-              <Footer />{" "}
             </ProductProvider>
           </CartProvider>
         </UserProvider>

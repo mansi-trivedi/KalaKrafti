@@ -112,7 +112,7 @@ const ProductDetails = () => {
           <p className="font-light text-[16px]">{product?.description}</p>
           <div className="py-6 flex">
             <Button
-              className="text-white2 font-xl w-[40%] mx-8 py-3 bg-gradient-to-br from-[#5C4033] via-[#A0522D] to-[#DEB887]"
+              className="text-white2 font-xl w-[40%] py-3 bg-gradient-to-br from-[#5C4033] via-[#A0522D] to-[#DEB887]"
               onClick={handleOnAddToCart}
             >
               ADD TO CART

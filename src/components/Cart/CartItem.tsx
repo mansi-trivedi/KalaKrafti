@@ -40,8 +40,8 @@ const CartItem: React.FC<CartItemPropsTypes> = (props) => {
   }, [cartItemId, removeFromCart]);
 
   return (
-    <div className="px-2 bg-white2 rounded-xl relative p-2">
-      <div className="grid lg:grid-cols-[40%_55%] xl:grid-cols-[40%_55%] 2xl:grid-cols-[40%_55%] 3xl:grid-cols-[40%_55%]p-2 items-center">
+    <div className="p-2 bg-white2 rounded-xl relative">
+      <div className="grid lg:grid-cols-[40%_55%] xl:grid-cols-[40%_55%] 2xl:grid-cols-[40%_55%] 3xl:grid-cols-[40%_55%] items-center">
         <div className="flex flex-col lg:flex-row xl:flex-row 2xl:flex-row 3xl:flex-row">
           <div className="w-20 h-20 relative m-2">
             {productImage[0] && (

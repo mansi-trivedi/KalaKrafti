@@ -50,7 +50,7 @@ export default function ProductCarousel() {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      const [response] = await getAllProduct(13, 1);
+      const [response] = await getAllProduct(8, 1);
       setProducts(response?.data?.products ?? []);
       setIsLoading(false);
     };

@@ -115,11 +115,11 @@ const Register: FC = () => {
   );
 
   return (
-    <div className="relative py-20 overflow-hidden">
+    <div className="relative py-16 px-4 overflow-hidden">
       <div className="min-h-[400px] max-w-6xl bg-white mx-auto shadow-lg rounded-xl overflow-hidden relative">
         <div className="grid lg:grid-cols-[50%_50%]">
-          <div className="banner-container hidden lg:flex">
-            <div className="imageBlock w-full relative overflow-hidden">
+          <div className="hidden lg:flex">
+            <div className="imageBlock w-full h-full relative overflow-hidden">
               <Image
                 className="w-full border object-cover block"
                 src="https://krafti.qodeinteractive.com/wp-content/uploads/2019/07/main-rev-img-1.jpg"
@@ -128,7 +128,7 @@ const Register: FC = () => {
               />
             </div>
           </div>
-          <div className="registration-form-container p-10">
+          <div className="p-10">
             <fieldset>
               <legend className="text-4xl tracking-widest text-brick uppercase font-semibold mb-3">
                 <h1>Registration</h1>

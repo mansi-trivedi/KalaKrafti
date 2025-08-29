@@ -35,7 +35,7 @@ const Wishlist = () => {
 
   if (isLoading) {
     return (
-      <div className="flex h-[50vh] justify-center items-center">
+      <div className="flex h-[100vh] justify-center items-center">
         <BeatLoader color="#a55e3f" loading={isLoading} size={28} />
       </div>
     );
@@ -46,7 +46,7 @@ const Wishlist = () => {
         WISHLIST
       </h1>
       {products?.length ? (
-        <div className="grid lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 grid-cols-3 border border-brick">
+        <div className="grid lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 grid-cols-2 md:grid border border-brick">
           {products.map((product, index) => (
             <div
               key={index}
@@ -62,7 +62,7 @@ const Wishlist = () => {
           ))}
         </div>
       ) : (
-        <div className="text-xl flex h-[30vh] justify-center items-center text-brick  font-semibold tracking-wider">
+        <div className="text-xl flex h-[70vh] justify-center items-center text-brick  font-semibold tracking-wider">
           Empty Wishlist
         </div>
       )}

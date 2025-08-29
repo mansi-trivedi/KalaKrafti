@@ -17,7 +17,7 @@ export default function Shop() {
             />
           </div>
 
-          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center justify-center z-0">
             <div
               className={`zig-zag-box flex items-center justify-center ${bgColor} ${textColor} text-lg font-semibold tracking-widest z-10 relative`}
             >

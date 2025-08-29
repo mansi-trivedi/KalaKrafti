@@ -27,13 +27,13 @@ const Cart = () => {
         CART
       </h1>
       {cartItems?.length ? (
-        <div className="grid lg:grid-cols-[calc(70%-1rem)_calc(30%-1rem)] relative min-h-screen w-full max-w-full gap-5">
-          <div className="cart-items-container flex flex-col gap-3">
+        <div className="grid relative min-h-[70vh] w-full max-w-full">
+          <div className=" flex flex-col gap-3">
             {cartItems.map((cartItem, index) => {
               return <CartItem key={index} cartItem={cartItem} />;
             })}
           </div>
-          <div className="cart-summary-container sticky top-8 self-start w-full">
+          <div className="sticky top-8 self-start w-full">
             <CartTotal />
             <div className="text-center">
               <Button className="w-full h-10 text-white2 font-xl uppercase tracking-wide py-2 bg-gradient-to-br from-[#5C4033] via-[#A0522D] to-[#DEB887]">
@@ -43,7 +43,7 @@ const Cart = () => {
           </div>
         </div>
       ) : (
-        <div className="text-xl flex h-[30vh] justify-center items-center text-brick  font-semibold tracking-wider">
+        <div className="text-xl flex h-[70vh] justify-center items-center text-brick  font-semibold tracking-wider">
           Empty Cart
         </div>
       )}
