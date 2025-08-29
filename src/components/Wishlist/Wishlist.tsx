@@ -4,8 +4,8 @@ import Product from "../Product/Product";
 import { ProductAPIProps } from "types/product";
 import { useProductContext } from "@/app/contexts/ProductContext";
 import { getWishList } from "@/app/data/wishlist";
-import { toast } from "sonner";
 import { BeatLoader } from "react-spinners";
+import { errorToast } from "@/utils/toaster";
 
 const Wishlist = () => {
   const [products, setProducts] = useState<Array<ProductAPIProps["product"]>>(
@@ -19,7 +19,7 @@ const Wishlist = () => {
       setIsLoading(false);
       const [response] = await getWishList();
       if (!response?.success) {
-        toast.error(
+        errorToast(
           "Not able to fetch wish list items at this moment. Please try again later"
         );
         return null;

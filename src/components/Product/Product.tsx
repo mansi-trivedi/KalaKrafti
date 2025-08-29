@@ -5,11 +5,11 @@ import Button from "../Button/Button";
 import Icon from "../Icon/Icon";
 import Link from "next/link";
 import { fetchProductImages } from "@/app/utils/imageUtils";
-import { toast } from "sonner";
 import { useProductContext } from "@/app/contexts/ProductContext";
 import { useUserContext } from "@/app/contexts/UserContext";
 import { useRouter } from "next/navigation";
 import { addToWishlist, removeItemFromWishList } from "@/app/data/wishlist";
+import { errorToast, successToast } from "@/utils/toaster";
 
 type ProductPropType = {
   product: ProductType;
@@ -34,7 +34,7 @@ const Product: React.FC<ProductPropType> = (props) => {
 
   const handleWishList = useCallback(async () => {
     if (!isLoggedIn) {
-      toast.error("Please log in to add products to your wishlist");
+      errorToast("Please log in to add products to your wishlist");
       router.push("/login");
       return;
     }
@@ -46,9 +46,9 @@ const Product: React.FC<ProductPropType> = (props) => {
       [response] = await addToWishlist(productId);
     }
     if (response?.success) {
-      toast.success(response?.message ?? "");
+      successToast(response?.message ?? "");
     } else {
-      toast.error("Something went wrong. Please try again");
+      errorToast("Something went wrong. Please try again");
       toggleProductsFromWishList(sku);
     }
   }, [

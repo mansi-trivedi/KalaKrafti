@@ -3,10 +3,10 @@ import Image from "next/image";
 import { FC, FormEvent, useCallback, useRef, useState } from "react";
 import Link from "next/link";
 import { performLoginOperation } from "@/app/data/user";
-import { toast } from "sonner";
 import { BeatLoader } from "react-spinners";
 import Button from "../Button/Button";
 import { useUserContext } from "@/app/contexts/UserContext";
+import { errorToast, successToast } from "@/utils/toaster";
 
 type LoginErrorProps = {
   email?: string;
@@ -51,7 +51,7 @@ const Login: FC = () => {
         const password = formData.get("password") as string;
         const isFormValid = validateForm(email, password);
         if (!isFormValid) {
-          toast.error("Please check form fields and try again");
+          errorToast("Please check form fields and try again");
           setIsLoading(false);
           return;
         }
@@ -60,7 +60,7 @@ const Login: FC = () => {
         if (err) {
           console.log(err);
           setIsLoading(false);
-          toast.error(
+          errorToast(
             err.response
               ? err.response.data?.error
               : "Not able log in. Please try again later"
@@ -70,9 +70,7 @@ const Login: FC = () => {
         setIsLoading(false);
         if (response?.success) {
           handleUserLoggedInState(true);
-          toast.success("User successfully logged in", {
-            duration: 1000,
-          });
+          successToast("User successfully logged in");
           history.go(-1);
         }
       }
@@ -90,7 +88,7 @@ const Login: FC = () => {
                 className="w-full border object-cover block"
                 src="https://krafti.qodeinteractive.com/wp-content/uploads/2019/07/main-rev-img-2.jpg"
                 alt="product"
-                fill={true}
+                fill
               />
             </div>
           </div>

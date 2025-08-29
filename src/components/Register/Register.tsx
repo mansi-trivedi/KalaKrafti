@@ -3,10 +3,10 @@ import Image from "next/image";
 import { FC, FormEvent, useCallback, useRef, useState } from "react";
 import Link from "next/link";
 import { performUserRegistration } from "@/app/data/user";
-import { toast } from "sonner";
 import { BeatLoader } from "react-spinners";
 import Button from "@/components/Button/Button";
 import { useRouter } from "next/navigation";
+import { errorToast, successToast } from "@/utils/toaster";
 
 type RegisterErrorProps = {
   email?: string;
@@ -87,7 +87,7 @@ const Register: FC = () => {
           lastName
         );
         if (!isFormValid) {
-          toast.error("Please check form fields and try again");
+          errorToast("Please check form fields and try again");
           setIsLoading(false);
           return;
         }
@@ -98,7 +98,7 @@ const Register: FC = () => {
           firstName
         );
         if (err) {
-          toast.error(
+          errorToast(
             err.response
               ? err.response.data?.error
               : "Not able to register at this moment. Please try again later"
@@ -107,9 +107,7 @@ const Register: FC = () => {
           return;
         }
         setIsLoading(false);
-        toast.success("User registered successfully", {
-          duration: 1000,
-        });
+        successToast("User registered successfully");
         router.push("/login");
       }
     },
@@ -126,7 +124,7 @@ const Register: FC = () => {
                 className="w-full border object-cover block"
                 src="https://krafti.qodeinteractive.com/wp-content/uploads/2019/07/main-rev-img-1.jpg"
                 alt="product"
-                fill={true}
+                fill
               />
             </div>
           </div>

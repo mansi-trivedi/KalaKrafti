@@ -2,7 +2,7 @@
 import React, { FormEvent, useCallback, useRef, useState } from "react";
 import Button from "../Button/Button";
 import { BeatLoader } from "react-spinners";
-import { toast } from "sonner";
+import { successToast } from "@/utils/toaster";
 
 const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -64,7 +64,7 @@ const ContactForm = () => {
             const result = await response.json();
             formRef.current.reset();
             setIsLoading(false);
-            toast.success(result.message);
+            successToast(result.message);
           } catch (e) {
             console.error(e);
             setIsLoading(false);

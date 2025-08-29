@@ -9,8 +9,8 @@ import Icon from "../Icon/Icon";
 import Product from "../Product/Product";
 import { ProductAPIProps } from "types/product";
 import { getAllProduct } from "@/app/data/product";
-import { toast } from "sonner";
 import { useProductContext } from "@/app/contexts/ProductContext";
+import { errorToast } from "@/utils/toaster";
 
 const PRODUCTS_PER_PAGE = 6;
 
@@ -42,7 +42,7 @@ const AllProduct = () => {
     const [response, err] = await getAllProduct(PRODUCTS_PER_PAGE, pageNumber);
     setCurrentProducts(response?.data?.products ?? []);
     if (err) {
-      toast.error("Not able to fetch products");
+      errorToast("Not able to fetch products");
       return;
     }
     setCurrentPage(pageNumber);

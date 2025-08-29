@@ -11,11 +11,11 @@ import { fetchProductImages } from "@/app/utils/imageUtils";
 import { BeatLoader } from "react-spinners";
 import Icon from "../Icon/Icon";
 import { useCartContext } from "@/app/contexts/CartContext";
-import { toast } from "sonner";
 import { addToWishlist, removeItemFromWishList } from "@/app/data/wishlist";
 import { useUserContext } from "@/app/contexts/UserContext";
 import { useProductContext } from "@/app/contexts/ProductContext";
 import { ServerResponseType } from "types/global";
+import { errorToast, successToast } from "@/utils/toaster";
 
 const ProductDetails = () => {
   const { sku } = useParams<{ sku: string }>();
@@ -51,7 +51,7 @@ const ProductDetails = () => {
 
   const handleWishList = useCallback(async () => {
     if (!isLoggedIn) {
-      toast.error("Please log in to add products to your wishlist");
+      errorToast("Please log in to add products to your wishlist");
       router.push("/login");
       return;
     }
@@ -63,9 +63,9 @@ const ProductDetails = () => {
       [response] = await addToWishlist(product?.productId ?? "");
     }
     if (response?.success) {
-      toast.success(response?.message ?? "");
+      successToast(response?.message ?? "");
     } else {
-      toast.error("Something went wrong. Please try again");
+      errorToast("Something went wrong. Please try again");
       toggleProductsFromWishList(product?.SKU ?? "");
     }
   }, [

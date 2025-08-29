@@ -19,8 +19,8 @@ import {
   addToCart as addItemToCart,
 } from "@/app/data/cart";
 import { CartAPIProps } from "types/cart";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { errorToast, successToast } from "@/utils/toaster";
 
 type CartProviderPropTypes = {
   children: ReactNode;
@@ -79,17 +79,17 @@ const CartProvider: FC<CartProviderPropTypes> = ({ children }) => {
   const addToCart = useCallback(
     async (productId: string, quantity: number) => {
       if (!isLoggedIn) {
-        toast.error("Please log in to add products to your cart");
+        errorToast("Please log in to add products to your cart");
         router.push("/login");
         return;
       }
       const [resp, err] = await addItemToCart(productId, quantity);
       if (err) {
-        toast.error("Something went wrong, Please try again after sometime");
+        errorToast("Something went wrong, Please try again after sometime");
         return;
       }
       if (resp?.success) {
-        toast.success("Item successfully added to the cart");
+        successToast("Item successfully added to the cart");
       }
     },
     [isLoggedIn, router]
@@ -118,11 +118,11 @@ const CartProvider: FC<CartProviderPropTypes> = ({ children }) => {
           setCartItems(updatedCartResp.data ?? []);
           const [cartResp, cartErr] = await getCart();
           if (cartErr) {
-            toast.error("Not able to update cart details at this moment");
+            errorToast("Not able to update cart details at this moment");
             return { success: false, error: cartErr };
           }
           if (cartResp?.success) {
-            toast.success("Item quantity has been updated successfully");
+            successToast("Item has been removed successfully");
             setCart(cartResp?.data ?? null);
           }
           return { success: true, error: null };
@@ -167,7 +167,7 @@ const CartProvider: FC<CartProviderPropTypes> = ({ children }) => {
       if (!isLoggedIn) return;
       const [resp, err] = await updateItemQuantity(productId, quantity);
       if (err) {
-        toast.error("Something went wrong, Please try again after sometime");
+        errorToast("Something went wrong, Please try again after sometime");
         return;
       }
       if (resp?.success) {
@@ -178,11 +178,11 @@ const CartProvider: FC<CartProviderPropTypes> = ({ children }) => {
           // getting updated cart details
           const [cartResp, cartErr] = await getCart();
           if (cartErr) {
-            toast.error("Not able to update cart details at this moment");
+            errorToast("Not able to update cart details at this moment");
             return;
           }
           if (cartResp?.success) {
-            toast.success("Item quantity has been updated successfully");
+            successToast("Item quantity has been updated successfully");
             setCart(cartResp?.data ?? null);
           }
         }

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../Button/Button";
@@ -24,6 +24,7 @@ const CartItem: React.FC<CartItemPropsTypes> = (props) => {
     images,
     SKU,
   } = cartItem ?? {};
+  const [itemQuantity, setItemQuantity] = useState<number>(quantity);
 
   const productImage = useMemo(() => {
     if (!images) {
@@ -46,10 +47,9 @@ const CartItem: React.FC<CartItemPropsTypes> = (props) => {
             {productImage[0] && (
               <Image
                 src={productImage[0]}
-                className="rounded-lg"
+                className="rounded-lg object-cover"
                 alt="Product Image"
-                layout="fill"
-                objectFit="cover"
+                fill
               />
             )}
           </div>
@@ -77,12 +77,17 @@ const CartItem: React.FC<CartItemPropsTypes> = (props) => {
           </div>
 
           <div className="flex justify-center">
-            <Quantity quantity={quantity} productId={productId} />
+            <Quantity
+              quantity={quantity}
+              productId={productId}
+              itemQuantity={itemQuantity}
+              setItemQuantity={setItemQuantity}
+            />
           </div>
 
           <div className="text-end mr-4">
             <p className="font-light tracking-wider">
-              Rs. {Number(price).toFixed(2)}
+              Rs. {(Number(price) * itemQuantity).toFixed(2)}
             </p>
           </div>
         </div>

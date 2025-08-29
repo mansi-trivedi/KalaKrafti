@@ -1,5 +1,5 @@
 "use client";
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useEffect } from "react";
 import Button from "../Button/Button";
 import Icon from "../Icon/Icon";
 import { useCartContext } from "@/app/contexts/CartContext";
@@ -7,20 +7,19 @@ import { useCartContext } from "@/app/contexts/CartContext";
 type QuantityProps = {
   quantity: number;
   productId: string;
+  itemQuantity: number;
+  setItemQuantity: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const Quantity: FC<QuantityProps> = (props) => {
-  const { quantity = 1, productId } = props;
-  // const [value, setValue] = useState(1);
-  const [itemQuantity, setItemQuantity] = useState<number>(quantity);
-
+  const { quantity = 1, productId, itemQuantity, setItemQuantity } = props;
   const { updateCartItemQuantity } = useCartContext();
 
   const handleOnIncreaseQtyBtn = useCallback(async () => {
     const updatedQuantity = itemQuantity + 1;
     setItemQuantity(updatedQuantity);
     await updateCartItemQuantity(productId, updatedQuantity);
-  }, [itemQuantity, updateCartItemQuantity, productId]);
+  }, [itemQuantity, setItemQuantity, updateCartItemQuantity, productId]);
 
   const handleOnDecreaseQtyBtn = useCallback(async () => {
     if (itemQuantity > 1) {
@@ -28,14 +27,11 @@ const Quantity: FC<QuantityProps> = (props) => {
       setItemQuantity(updatedQuantity);
       await updateCartItemQuantity(productId, updatedQuantity);
     }
-  }, [itemQuantity, updateCartItemQuantity, productId]);
-
-  // const increment = () => setValue((prev) => prev + 1);
-  // const decrement = () => setValue((prev) => (prev > 0 ? prev - 1 : 0));
+  }, [itemQuantity, setItemQuantity, updateCartItemQuantity, productId]);
 
   useEffect(() => {
     setItemQuantity(quantity);
-  }, [quantity]);
+  }, [quantity, setItemQuantity]);
 
   return (
     <div className="flex items-center border border-brick p-2 ">

@@ -7,7 +7,7 @@ const Navigation = () => {
   const pathname = usePathname();
   return (
     <div>
-      <ul className="flex flex-col justify-center items-center gap-5 xl:gap-8 2xl:gap-11 lg:flex-row xl:flex-row 2xl:flex-row">
+      <ul className="flex flex-col justify-center items-center gap-5 xl:gap-8 2xl:gap-11 lg:flex-row xl:flex-row 2xl:flex-row ">
         {menuItems.map((item, index) => {
           return (
             <li

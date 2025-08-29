@@ -6,8 +6,8 @@ import Button from "../Button/Button";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useUserContext } from "@/app/contexts/UserContext";
-import { toast } from "sonner";
 import { performUserLogout } from "@/app/data/user";
+import { errorToast, successToast } from "@/utils/toaster";
 
 const Header = () => {
   const pathname = usePathname();
@@ -34,12 +34,12 @@ const Header = () => {
   const handleUserLogout = useCallback(async () => {
     const [response, error] = await performUserLogout();
     if (error) {
-      toast.error("Something went wrong, Please try again later");
+      errorToast("Something went wrong, Please try again later");
       return;
     }
     if (response?.success) {
       handleUserLoggedInState(false);
-      toast.success("Successfully logout");
+      successToast("Successfully logout");
       router.push("/");
     }
   }, [handleUserLoggedInState, router]);
@@ -66,12 +66,6 @@ const Header = () => {
         </div>
 
         <div className="flex space-x-4 text-brick">
-          {/* <Link
-            href="/register"
-            className="p-0.5 transition-transform duration-500 hover:rotate-y-180"
-          >
-            <Icon icon="user" className="hover:fill-brick" />
-          </Link> */}
           {isLoggedIn ? (
             <div className="relative">
               <button
@@ -82,16 +76,16 @@ const Header = () => {
                 <Icon icon="user" className="fill-brick" />
               </button>
               {isDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 shadow-md rounded-md z-10">
+                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 shadow-md rounded-md z-20">
                   <Link
                     href={"/orders"}
-                    className="block w-full text-left px-4 py-2 text-sm text-blackShade hover:bg-gray-100 focus:outline-none focus:bg-gray-100 active:bg-gray-200 rounded-t-md rounded-b-md"
+                    className="block w-full text-left px-4 py-2 text-sm  hover:bg-gray-100 focus:outline-none focus:bg-gray-100 active:bg-gray-200 rounded-t-md rounded-b-md"
                   >
                     Orders
                   </Link>
                   <button
                     onClick={handleUserLogout}
-                    className="block w-full text-left px-4 py-2 text-sm text-blackShade hover:bg-gray-100 focus:outline-none focus:bg-gray-100 active:bg-gray-200 rounded-t-md rounded-b-md"
+                    className="block w-full text-left px-4 py-2 text-sm  hover:bg-gray-100 focus:outline-none focus:bg-gray-100 active:bg-gray-200 rounded-t-md rounded-b-md"
                   >
                     Logout
                   </button>
@@ -137,7 +131,7 @@ const Header = () => {
         </div>
       </div>
       {navigationModal && (
-        <div className="absolute top-18 z-10 bg-beige w-[90%] pt-8 pb-3">
+        <div className="absolute top-18 z-10 bg-white w-[30%] pt-8 pb-4 border border-gray-200 shadow-md rounded-md right-2">
           <Navigation />
         </div>
       )}

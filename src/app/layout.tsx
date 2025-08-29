@@ -44,14 +44,14 @@ export default async function RootLayout({
             <ProductProvider>
               <Toaster
                 position="bottom-right"
-                toastOptions={{
-                  style: {
-                    color: "#a55e3f",
-                    background: "#f8f8f8",
-                    fontSize: "14px",
-                    fontStyle: "italic",
-                  },
-                }}
+                // toastOptions={{
+                //   style: {
+                //     color: "#a55e3f",
+                //     background: "#f8f8f8",
+                //     fontSize: "14px",
+                //     fontStyle: "italic",
+                //   },
+                // }}
               />
               <ScrollUp />
               <Header />
