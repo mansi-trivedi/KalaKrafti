@@ -15,6 +15,8 @@ import { ReactComponent as InstagramSvg } from "@/Icons/instagram.svg";
 import { ReactComponent as facebookSvg } from "@/Icons/facebook.svg";
 import { ReactComponent as DownArrowSvg } from "@/Icons/downArrow.svg";
 import { ReactComponent as TrashSvg } from "@/Icons/trash.svg";
+import { ReactComponent as StarSvg } from "@/Icons/star.svg";
+import { ReactComponent as StarFilledSvg } from "@/Icons/star-filled.svg";
 
 type IconSvgComponent = React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 
@@ -34,6 +36,8 @@ type IconType = {
   instagram: IconSvgComponent;
   downArrow: IconSvgComponent;
   trash: IconSvgComponent;
+  star: IconSvgComponent;
+  starFilled: IconSvgComponent;
 };
 
 // Mapping SVG component to Icon
@@ -53,6 +57,8 @@ export const ICON_MAPPING: IconType = {
   instagram: InstagramSvg,
   downArrow: DownArrowSvg,
   trash: TrashSvg,
+  star: StarSvg,
+  starFilled: StarFilledSvg,
 };
 
 export type IconTypeProp =
@@ -70,7 +76,9 @@ export type IconTypeProp =
   | "instagram"
   | "youTube"
   | "downArrow"
-  | "trash";
+  | "trash"
+  | "star"
+  | "starFilled";
 
 export type IconSizes =
   | 8

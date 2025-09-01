@@ -16,10 +16,14 @@ import { useUserContext } from "@/app/contexts/UserContext";
 import { useProductContext } from "@/app/contexts/ProductContext";
 import { ServerResponseType } from "types/global";
 import { errorToast, successToast } from "@/utils/toaster";
+import { AverageReviewType } from "types/review";
+import { getProductAvgReview } from "@/app/data/review";
+import Rating from "../Rating/Ratings";
 
 const ProductDetails = () => {
   const { sku } = useParams<{ sku: string }>();
   const [product, setProduct] = useState<ProductType>();
+  const [avgReviews, setAvgReview] = useState<AverageReviewType>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { addToCart } = useCartContext();
   const { isLoggedIn } = useUserContext();
@@ -32,6 +36,10 @@ const ProductDetails = () => {
     const fetchData = async () => {
       setIsLoading(true);
       const [response] = await getProductBySku(sku);
+      const [reviewResp] = await getProductAvgReview(sku);
+      if (reviewResp?.success) {
+        setAvgReview(reviewResp?.data ?? null);
+      }
       setProduct(response?.data);
       setIsLoading(false);
     };
@@ -105,11 +113,16 @@ const ProductDetails = () => {
               />
             </Button>
           </div>
-
-          <h4 className="text-brick tracking-wider text-xl font-semibold py-4 italic">
+          <div className="flex items-center gap-2 text-sm">
+            <Rating isEditable={false} rating={avgReviews?.avgReview ?? 0} />
+            <p className="font-light italic capitalize">
+              {avgReviews?.totalReviews ?? 0} reviews
+            </p>
+          </div>
+          <p className="font-light text-[16px] pt-4">{product?.description}</p>
+          <h4 className="text-brick tracking-wider text-xl font-semibold pt-4 italic">
             Rs. {product?.price}
           </h4>
-          <p className="font-light text-[16px]">{product?.description}</p>
           <div className="py-6 flex">
             <Button
               className="text-white2 font-xl w-[40%] py-3 bg-gradient-to-br from-[#5C4033] via-[#A0522D] to-[#DEB887]"
@@ -143,7 +156,10 @@ const ProductDetails = () => {
         </div>
       </div>
       <div className="px-4">
-        <AdditionalInfo />
+        <AdditionalInfo
+          description={product?.description ?? ""}
+          sku={product?.SKU ?? ""}
+        />
       </div>
     </div>
   );

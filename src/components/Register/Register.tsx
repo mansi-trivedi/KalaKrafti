@@ -150,7 +150,7 @@ const Register: FC = () => {
                     type="text"
                     name="firstname"
                     placeholder="Enter your firstname"
-                    className="py-2 px-4 border border-blackShade"
+                    className="py-2 px-4 border border-black"
                     required
                   />
                   {errors.firstname && (
@@ -170,7 +170,7 @@ const Register: FC = () => {
                     type="text"
                     name="lastname"
                     placeholder="Enter your lastname"
-                    className="py-2 px-4 border border-blackShade"
+                    className="py-2 px-4 border border-black"
                     required
                   />
                   {errors.lastname && (
@@ -187,7 +187,7 @@ const Register: FC = () => {
                     type="email"
                     name="email"
                     placeholder="Enter your email"
-                    className="py-2 px-4 border border-blackShade"
+                    className="py-2 px-4 border border-black"
                     required
                   />
                   {errors.email && (
@@ -207,7 +207,7 @@ const Register: FC = () => {
                     type="password"
                     name="password"
                     placeholder="Enter your password"
-                    className="py-2 px-4 border border-blackShade mb-2"
+                    className="py-2 px-4 border border-black mb-2"
                     required
                   />
                   {errors.password && (
@@ -227,7 +227,7 @@ const Register: FC = () => {
                     type="password"
                     name="confirm-password"
                     placeholder="Re-Enter your password"
-                    className="py-2 px-4 border border-blackShade mb-2"
+                    className="py-2 px-4 border border-black mb-2"
                     required
                   />
                   {errors.confirmPassword && (

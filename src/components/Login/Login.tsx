@@ -110,7 +110,7 @@ const Login: FC = () => {
                     type="email"
                     name="email"
                     placeholder="Enter your email"
-                    className="py-2 px-4 border border-blackShade"
+                    className="py-2 px-4 border border-black"
                     required
                   />
                   {errors.email && (
@@ -129,7 +129,7 @@ const Login: FC = () => {
                     type="password"
                     name="password"
                     placeholder="Enter your password"
-                    className="py-2 px-4 border border-blackShade mb-2"
+                    className="py-2 px-4 border border-black mb-2"
                     required
                   />
                   {errors.password && (

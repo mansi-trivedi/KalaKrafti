@@ -56,7 +56,7 @@ const CartItem: React.FC<CartItemPropsTypes> = (props) => {
           <div className="product-information px-2 my-2">
             <Link
               href={{
-                pathname: `/product/${SKU}`,
+                pathname: `/products/${SKU}`,
               }}
             >
               <p className="font-semibold text-brick tracking-wider cursor-pointer">

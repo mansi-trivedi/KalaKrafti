@@ -13,7 +13,7 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
       type={type}
-      className={`disabled:opacity-50 ${className}`}
+      className={`disabled:opacity-50 ${className} cursor-pointer`}
     >
       {children}
     </button>

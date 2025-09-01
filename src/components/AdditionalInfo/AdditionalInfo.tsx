@@ -1,7 +1,13 @@
 "use client";
-import { useState } from "react";
+import { FC, useState } from "react";
+import Review from "../Review";
 
-const AdditionalInfo = () => {
+type AdditionalInfoProp = {
+  description: string;
+  sku: string;
+};
+
+const AdditionalInfo: FC<AdditionalInfoProp> = ({ description, sku }) => {
   const [activeTab, setActiveTab] = useState<
     "description" | "info" | "reviews"
   >("description");
@@ -38,36 +44,32 @@ const AdditionalInfo = () => {
       <div className="mt-6 ">
         {activeTab === "description" && (
           <div className="text-sm font-light tracking-wider">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor se incididunt ut labore et dolore magna aliqua. Ut
-              enim ad min im veniam, quis nostruda exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute ire dolor in
-              reprehenderit in olupt ate velit esse cillum. dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum. Sed
-              ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium.
-            </p>
+            <p>{description}</p>
           </div>
         )}
 
         {activeTab === "info" && (
           <table className="w-72">
-            <tr className="h-10">
-              <td className="tracking-widest font-bold text-brick">WEIGHT</td>
-              <td className="font-light">0.5Kg</td>
-            </tr>
-            <tr className="h-10">
-              <td className="tracking-widest font-bold text-brick">
-                DIMENSIONS
-              </td>
-              <td className="font-light"> 15 × 20 × 20 cm</td>
-            </tr>
+            <tbody>
+              <tr className="h-10">
+                <td className="tracking-widest font-bold text-brick">WEIGHT</td>
+                <td className="font-light">0.5Kg</td>
+              </tr>
+              <tr className="h-10">
+                <td className="tracking-widest font-bold text-brick">
+                  DIMENSIONS
+                </td>
+                <td className="font-light"> 15 × 20 × 20 cm</td>
+              </tr>
+            </tbody>
           </table>
         )}
 
-        {activeTab === "reviews" && <div></div>}
+        {activeTab === "reviews" && (
+          <div>
+            <Review isReviewPage={false} sku={sku} />
+          </div>
+        )}
       </div>
     </div>
   );

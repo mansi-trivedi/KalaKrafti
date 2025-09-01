@@ -11,6 +11,7 @@ import { ProductAPIProps } from "types/product";
 import { getAllProduct } from "@/app/data/product";
 import { useProductContext } from "@/app/contexts/ProductContext";
 import { errorToast } from "@/utils/toaster";
+import Button from "../Button/Button";
 
 const PRODUCTS_PER_PAGE = 6;
 
@@ -113,9 +114,9 @@ const AllProduct = () => {
         isOpen={filterModal}
         contentStyles={{ width: "90%", position: "relative" }}
       >
-        <button onClick={handleFilterModal}>
+        <Button onClick={handleFilterModal}>
           <Icon icon="cross" className="absolute right-3" />
-        </button>
+        </Button>
         <Filter
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}
