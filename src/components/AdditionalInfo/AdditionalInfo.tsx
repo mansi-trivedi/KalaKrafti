@@ -37,7 +37,7 @@ const AdditionalInfo: FC<AdditionalInfoProp> = ({ description, sku }) => {
             activeTab === "reviews" ? "border-b-2" : ""
           }`}
         >
-          REVIEWS (1)
+          REVIEWS
         </button>
       </div>
 
