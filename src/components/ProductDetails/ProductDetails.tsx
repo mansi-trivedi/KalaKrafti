@@ -59,8 +59,9 @@ const ProductDetails = () => {
 
   const handleWishList = useCallback(async () => {
     if (!isLoggedIn) {
+      const currentPath = window.location.pathname;
       errorToast("Please log in to add products to your wishlist");
-      router.push("/login");
+      router.push(`/login?callbackUrl=${encodeURIComponent(currentPath)}`);
       return;
     }
     toggleProductsFromWishList(product?.SKU ?? "");
@@ -99,9 +100,9 @@ const ProductDetails = () => {
         <div className="w-full lg:w-[60%] xl:w-[60%] 2xl:w-[60%]">
           <ImageCarousel images={images} />
         </div>
-        <div className="w-full lg:w-[40%] xl:w-[40%] 2xl:w-[40%] p-8">
+        <div className="w-full lg:w-[40%] xl:w-[40%] 2xl:w-[40%] px-8 lg:p-8 xl:p-8 2xl:p-8">
           <div className="flex">
-            <h1 className="text-brick tracking-widest text-4xl font-bold py-4">
+            <h1 className="text-brick tracking-widest text-3xl font-bold py-4">
               {product?.name}
             </h1>
             <Button className="px-4" onClick={handleWishList}>
@@ -131,28 +132,36 @@ const ProductDetails = () => {
               ADD TO CART
             </Button>
           </div>
-          <div className="my-5 space-y-4">
-            <div className="flex">
-              <h2 className="tracking-widest font-bold text-brick">SKU : </h2>
-              <p className="font-light mx-2">3</p>
-            </div>
-            <div className="flex">
-              <h2 className="tracking-widest font-bold text-brick">
-                CATEGORY :{" "}
-              </h2>
-              <p className="font-light mx-2">{product?.categoryId}</p>
-            </div>
-            <div className="flex">
-              <h2 className="tracking-widest font-bold text-brick">TAGS : </h2>
-              <p className="font-light mx-2">Homemade, Food, Craft</p>
-            </div>
-            <div className="flex">
-              <h2 className="tracking-widest font-bold text-brick mr-2">
-                SHARE :{" "}
-              </h2>
-              <SocialMedia />
-            </div>
-          </div>
+          <table className="w-[100%]">
+            <tbody>
+              <tr className="h-11">
+                <td className="tracking-widest font-bold text-brick uppercase w-[35%]">
+                  SKU :
+                </td>
+                <td className="font-light mx-2">{product?.SKU}</td>
+              </tr>
+              <tr className="h-11">
+                <td className="tracking-widest font-bold text-brick uppercase">
+                  Category :
+                </td>
+                <td className="font-light mx-2">{product?.categoryId}</td>
+              </tr>
+              <tr className="h-11">
+                <td className="tracking-widest font-bold text-brick uppercase">
+                  Tags :
+                </td>
+                <td className="font-light mx-2">Homemade, Food, Craft</td>
+              </tr>
+              <tr className="h-11">
+                <td className="tracking-widest font-bold text-brick uppercase">
+                  SHARE :
+                </td>
+                <td className="font-light mx-2">
+                  <SocialMedia />
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <div className="px-4">

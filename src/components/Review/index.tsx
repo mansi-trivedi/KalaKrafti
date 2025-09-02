@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 
 type ReviewPropTypes = {
   isReviewPage: boolean;
+  sku?: string;
 };
 
 const Review: FC<ReviewPropTypes> = (props) => {

@@ -30,8 +30,6 @@ const Product: React.FC<ProductPropType> = (props) => {
   const { isLoggedIn } = useUserContext();
   const router = useRouter();
 
-  console.log("isItemInWishList", isItemInWishList);
-
   const handleWishList = useCallback(async () => {
     if (!isLoggedIn) {
       errorToast("Please log in to add products to your wishlist");

@@ -12,9 +12,13 @@ import { errorToast, successToast } from "@/utils/toaster";
 const Header = () => {
   const pathname = usePathname();
   const { isLoggedIn, handleUserLoggedInState } = useUserContext();
-  const [navigationModal, setNavigationModal] = useState(false);
+  const [navigationModal, setNavigationModal] = useState<boolean>(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const router = useRouter();
+
+  useEffect(() => {
+    setNavigationModal(false);
+  }, [pathname]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -29,6 +33,7 @@ const Header = () => {
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+    setNavigationModal(false);
   };
 
   const handleUserLogout = useCallback(async () => {
@@ -46,6 +51,7 @@ const Header = () => {
 
   const handleNavigationModal = () => {
     setNavigationModal((prev) => !prev);
+    setIsDropdownOpen(false);
   };
   return (
     <header

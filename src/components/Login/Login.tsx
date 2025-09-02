@@ -7,6 +7,7 @@ import { BeatLoader } from "react-spinners";
 import Button from "../Button/Button";
 import { useUserContext } from "@/app/contexts/UserContext";
 import { errorToast, successToast } from "@/utils/toaster";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type LoginErrorProps = {
   email?: string;
@@ -18,6 +19,9 @@ const Login: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<LoginErrorProps>({});
   const formRef = useRef<HTMLFormElement>(null);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   const validateForm = useCallback((email: string, password: string) => {
     const formErrors: LoginErrorProps = {};
@@ -71,16 +75,17 @@ const Login: FC = () => {
         if (response?.success) {
           handleUserLoggedInState(true);
           successToast("User successfully logged in");
-          history.go(-1);
+          console.log("callback", callbackUrl);
+          router.push(callbackUrl);
         }
       }
     },
-    [handleUserLoggedInState, validateForm]
+    [callbackUrl, handleUserLoggedInState, router, validateForm]
   );
 
   return (
-    <div className="relative py-16 px-4 overflow-hidden">
-      <div className="min-h-[400px] max-w-6xl bg-white mx-auto shadow-lg rounded-xl overflow-hidden relative">
+    <div className="relative py-16 px-4 overflow-hidden bg-white">
+      <div className="min-h-[400px] max-w-6xl bg-white2 mx-auto shadow-lg rounded-xl overflow-hidden relative">
         <div className="grid lg:grid-cols-[50%_50%]">
           <div className=" hidden lg:flex">
             <div className="imageBlock w-full h-full relative overflow-hidden before:content-['']">
@@ -110,7 +115,7 @@ const Login: FC = () => {
                     type="email"
                     name="email"
                     placeholder="Enter your email"
-                    className="py-2 px-4 border border-black"
+                    className="py-2 px-4 border border-black focus:outline-none"
                     required
                   />
                   {errors.email && (
@@ -129,7 +134,7 @@ const Login: FC = () => {
                     type="password"
                     name="password"
                     placeholder="Enter your password"
-                    className="py-2 px-4 border border-black mb-2"
+                    className="py-2 px-4 border border-black mb-2 focus:outline-none"
                     required
                   />
                   {errors.password && (
@@ -155,7 +160,9 @@ const Login: FC = () => {
             <span className="mt-4 inline-block font-light tracking-wider">
               Want to register new account ?{" "}
               <Link
-                href={"/register"}
+                href={`/register?callbackUrl=${encodeURIComponent(
+                  callbackUrl
+                )}`}
                 className="underline text-brick tracking-wider font-semibold underline-offset-2"
               >
                 Register

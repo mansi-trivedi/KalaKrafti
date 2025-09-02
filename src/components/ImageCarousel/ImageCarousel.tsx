@@ -67,7 +67,7 @@ const ImageCarousel: FC<ImageCarouselProps> = ({ images }) => {
 
   return (
     <div className="w-full max-w-4xl mx-auto p-4">
-      <div className="w-full h-[100vh] relative overflow-hidden border border-brick mb-4">
+      <div className="w-full h-[50vh] lg:h-[100vh] xl:h-[100vh] 2xl:h-[100vh] relative overflow-hidden border border-brick mb-4">
         {images[selectedIndex] && (
           <Image
             src={images[selectedIndex]}

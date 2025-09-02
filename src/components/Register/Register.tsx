@@ -5,7 +5,7 @@ import Link from "next/link";
 import { performUserRegistration } from "@/app/data/user";
 import { BeatLoader } from "react-spinners";
 import Button from "@/components/Button/Button";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { errorToast, successToast } from "@/utils/toaster";
 
 type RegisterErrorProps = {
@@ -21,6 +21,8 @@ const Register: FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [errors, setErrors] = useState<RegisterErrorProps>({});
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   const validateForm = useCallback(
     (
@@ -108,15 +110,15 @@ const Register: FC = () => {
         }
         setIsLoading(false);
         successToast("User registered successfully");
-        router.push("/login");
+        router.push(`/login?callbackUrl=${encodeURIComponent(callbackUrl)}`);
       }
     },
-    [router, validateForm]
+    [callbackUrl, router, validateForm]
   );
 
   return (
-    <div className="relative py-16 px-4 overflow-hidden">
-      <div className="min-h-[400px] max-w-6xl bg-white mx-auto shadow-lg rounded-xl overflow-hidden relative">
+    <div className="relative py-16 px-4 overflow-hidden bg-white">
+      <div className="min-h-[400px] max-w-6xl bg-white2 mx-auto shadow-lg rounded-xl overflow-hidden relative">
         <div className="grid lg:grid-cols-[50%_50%]">
           <div className="hidden lg:flex">
             <div className="imageBlock w-full h-full relative overflow-hidden">
@@ -150,7 +152,7 @@ const Register: FC = () => {
                     type="text"
                     name="firstname"
                     placeholder="Enter your firstname"
-                    className="py-2 px-4 border border-black"
+                    className="py-2 px-4 border border-black focus:outline-none"
                     required
                   />
                   {errors.firstname && (
@@ -170,7 +172,7 @@ const Register: FC = () => {
                     type="text"
                     name="lastname"
                     placeholder="Enter your lastname"
-                    className="py-2 px-4 border border-black"
+                    className="py-2 px-4 border border-black focus:outline-none"
                     required
                   />
                   {errors.lastname && (
@@ -187,7 +189,7 @@ const Register: FC = () => {
                     type="email"
                     name="email"
                     placeholder="Enter your email"
-                    className="py-2 px-4 border border-black"
+                    className="py-2 px-4 border border-black focus:outline-none"
                     required
                   />
                   {errors.email && (
@@ -207,7 +209,7 @@ const Register: FC = () => {
                     type="password"
                     name="password"
                     placeholder="Enter your password"
-                    className="py-2 px-4 border border-black mb-2"
+                    className="py-2 px-4 border border-black focus:outline-none"
                     required
                   />
                   {errors.password && (
@@ -227,7 +229,7 @@ const Register: FC = () => {
                     type="password"
                     name="confirm-password"
                     placeholder="Re-Enter your password"
-                    className="py-2 px-4 border border-black mb-2"
+                    className="py-2 px-4 border border-black focus:outline-none"
                     required
                   />
                   {errors.confirmPassword && (
@@ -252,7 +254,7 @@ const Register: FC = () => {
             <span className="mt-4 inline-block font-light tracking-wider">
               Already have an account ?{" "}
               <Link
-                href={"/login"}
+                href={`/login?callbackUrl=${encodeURIComponent(callbackUrl)}`}
                 className="underline text-brick tracking-wider font-semibold underline-offset-2"
               >
                 Login
