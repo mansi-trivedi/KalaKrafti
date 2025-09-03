@@ -88,9 +88,12 @@ const ReviewProvider: FC<ReviewProviderPropTypes> = (props) => {
     async (review: string, rating: number) => {
       const [response, err] = await addProductReview(sku, review, rating, null);
       if (err) {
-        const errorMessage = err.response
+        let errorMessage = err.response
           ? err.response.data?.error
           : "Review not Added. Please try again later";
+        errorMessage = errorMessage.toLowerCase().includes("duplicate entry")
+          ? "Review Already Added"
+          : errorMessage;
         errorToast(errorMessage);
         return;
       }

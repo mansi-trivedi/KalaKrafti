@@ -7,7 +7,7 @@ const ReviewPage: FC = () => {
   return (
     <>
       <Header />
-      <div className=" py-8 px-4 bg-white">
+      <div className=" py-8 px-4 bg-white h-[75vh]">
         <Review isReviewPage={true} />
       </div>
       <Footer />
